@@ -169,7 +169,7 @@ Route::post('/v1/admin/receiving/receivingItems/new', 'ReceivingItemsController@
 Route::put('/v1/admin/receiving/receivingItems/{id}', 'ReceivingItemsController@update');
 Route::delete('/v1/admin/receiving/receivingItems/{id}', 'ReceivingItemsController@destroy');
 
-Route::resource('/v1/admin/items', 'ItemsController');
+// Route::resource('/v1/admin/items', 'ItemsController');
 
 Route::get('/v1/admin/category', 'CategoryController@index');
 

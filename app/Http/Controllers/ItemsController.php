@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreItem;
 
 class ItemsController extends Controller
 {
@@ -15,7 +17,8 @@ class ItemsController extends Controller
     public function index()
     {
         $result = Item::paginate(10);
-        return response()->json($result, 200);
+        // return response()->json($result, 200);
+        return view('adminItems', ['items' => $result]);
     }
 
     /**
@@ -26,6 +29,8 @@ class ItemsController extends Controller
     public function create()
     {
         //
+        $category = Category::get();
+        return view('components.forms.createItemForm', ['categories'=> $category]);
     }
 
     /**
@@ -34,20 +39,14 @@ class ItemsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreItem $request)
     {
         //
-        $validatedData = Validator::
+        // dump($request->all());
+        $validatedData = $request->validated();
+        $result = Item::create($validatedData);
 
-        $data= [
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-            'initialQty'=>$request->initialQty
-        ];
-
-        $result = Item::create($data);
-
-        return response()->json($result, 200);
+        return redirect()->route('items.index')->with('message', 'New Items Has been Added');
     }
 
     /**
@@ -59,9 +58,9 @@ class ItemsController extends Controller
     public function show($id)
     {
         //
-        $result = Item::findOrFail($id);
+        // $result = Item::findOrFail($id);
 
-        return response()->json($result, 200);
+        // return response()->json($result, 200);
     }
 
     /**
@@ -73,7 +72,10 @@ class ItemsController extends Controller
     public function edit($id)
     {
         //
-        return 'from edit' .$id;
+        $category = Category::get();
+        $result = Item::findOrFail($id);
+        return view('components.forms.createItemForm', ['item'=> $result,'categories'=> $category]);
+        // return 'from edit' .$id;
     }
 
     /**
@@ -83,9 +85,14 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreItem $request, $id)
     {
         //
+    $validatedData = $request->validated();
+    $result = Item::where('id', $id)->update($validatedData);
+
+    return redirect()->route('items.index')->with('updated', ' Item #-'.$id.' Has been Updated...');
+
     }
 
     /**
@@ -96,6 +103,11 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // return 'from destroy';
+        $result = Item::where('id', $id)->delete();
+
+        return redirect()->route('items.index')->with('deleted', 'Items Has been Deleted');
+
     }
 }

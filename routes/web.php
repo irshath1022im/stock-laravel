@@ -39,30 +39,40 @@ Route::get('/admin/adminStore', function () {
     return view('adminStore', ['stores' => $stores]);
 })->name('adminStore');
 
+Route::resource('/store', 'StoreController');
 
+Route::resource('/admin/category', 'CategoryController');
+
+Route::resource('/admin/items', 'ItemsController');
+
+Route::resource('/admin/receiving', 'ReceivingController');
 
 Route::get('/admin/adminItems', function () {
     return view('adminItems');
 })->name('adminItems');
 
-Route::get('/report/items', 'ItemReportController@item' );
 
-Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
 
-Route::get('/reports/{store}', 'ItemReportController@item')->name('storeReport');
+// Route::get('/report/items', 'ItemReportController@item' );
 
-Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
+// Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
+
+// Route::get('/reports/{store}', 'ItemReportController@item')->name('storeReport');
+
+// Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
 
 Route::get('/store/storeSummary/{store_type}', 'StoreController@getStoreSummary')->name('storeSummary');
 
-Route::resource('/store', 'StoreController');
-Route::resource('/admin/category', 'CategoryController');
+
+
+
 
 
 Route::get('/items', 'ItemController@index')->name('items');
-Route::get('/items/delivery', 'ItemController@store');
-Route::get('/items/issue', 'ItemController@issue');
-Route::get('/items/update/{delivery}/{lineId}', 'ItemController@updateIssued');
+
+// Route::get('/items/delivery', 'ItemController@store');
+// Route::get('/items/issue', 'ItemController@issue');
+// Route::get('/items/update/{delivery}/{lineId}', 'ItemController@updateIssued');
 
 
 Route::get('/category/{category}', 'CategoryController@category')->name('category');

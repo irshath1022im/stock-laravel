@@ -1,17 +1,47 @@
+
 @extends('layouts.adminLayout')
+
 @section('content')
 
-<div class="container-fluid row">
+            <div>
+                <h3>ITEMS </h3>
+            </div>
 
-    <div class="col-4 border border-primary p-2">
-        @component('components.Admin.leftMenu')
+            @if($message = session('message'))
+                <div class="alert alert-success" role="alert">
+                  <strong>{{ $message}}</strong>
+              </div>
+            @endif
 
-        @endcomponent
-    </div>
+            @if($message = session('updated'))
+            <div class="alert alert-info" role="alert">
+              <strong>{{ $message}}</strong>
+          </div>
+        @endif
 
-    <div class="col-8">
-        from adminCategory
-    </div>
+           @if(session('deleted'))
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ session('deleted')}}</strong>
+            </div>
+            @endif
 
-</div>
+
+              {{-- @livewire('admin.store') --}}
+              <div>
+
+                <div>
+                    <div class="input-group mb-3">
+                        <a name="" id="" class="btn btn-primary" href="{{ route('items.create') }}"role="button">NEW ITEM</a>
+                    </div>
+                </div>
+
+                @component('components.items', ['items'=> $items])
+
+                @endcomponent
+
+            </div>
+
+    {{-- end of column --}}
+
+
 @endsection

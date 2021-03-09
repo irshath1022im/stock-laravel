@@ -22,7 +22,8 @@ class ReceivingController extends Controller
             ->take(5)
             ;
 
-            return response()->json($result, 200);
+            // return response()->json($result, 200);
+            return view('adminReceiving');
     }
 
     public function show($id)
@@ -35,10 +36,10 @@ class ReceivingController extends Controller
 
         ->where('id', $id)
         ->get()
-        ->take(5)
         ;
 
-        return response()->json($result, 200);
+        // return response()->json($result, 200);
+        return view('receiving', ['receiving' => $result]);
     }
 
     public function deleteReceiving($id) {

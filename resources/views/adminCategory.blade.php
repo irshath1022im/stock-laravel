@@ -52,6 +52,7 @@
                             <form action="{{ route('category.destroy', ['category'=>$category->id])}}">
                                 @csrf
                                 @method("DELETE")
+
                             <a  href="{{ route('category.destroy',['category'=> $category->id]) }}">
                                 <img src=" {{ asset('icons/trash-2.svg')}}" /></a>
 
