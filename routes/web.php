@@ -46,6 +46,7 @@ Route::resource('/admin/category', 'CategoryController');
 Route::resource('/admin/items', 'ItemsController');
 
 Route::resource('/admin/receiving', 'ReceivingController');
+Route::resource('/admin/receivingItems', 'ReceivingItemsController');
 
 Route::get('/admin/adminItems', function () {
     return view('adminItems');

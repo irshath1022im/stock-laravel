@@ -12,6 +12,13 @@ class ReceivingLivewire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $orderItems;
+
+    public function displayOrderItems()
+    {
+        $this->orderItems = ['test1'];
+    }
+
     public function render()
     {
 

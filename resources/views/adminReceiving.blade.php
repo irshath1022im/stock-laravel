@@ -1,5 +1,10 @@
 @extends('layouts.adminLayout')
 
 @section('content')
-   @livewire('receiving-livewire')
+
+    @component('components.receiving.receiving', ['receivings' => $receivings])
+
+    @endcomponent
+
+
 @endsection

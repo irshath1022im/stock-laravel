@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ReceivingItemsController extends Controller
     public function index()
     {
         //
-        return 'from index';
+        return view('adminReceivingItems');
     }
 
     /**
@@ -26,7 +27,8 @@ class ReceivingItemsController extends Controller
     public function create()
     {
         //
-        return  'from create';
+        $items = Item::get();
+        return view('components.forms.createReceivingItemsForm', ['items'=> $items]);
     }
 
     /**
@@ -37,19 +39,27 @@ class ReceivingItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dump($request->all());
+
+        $validatedData = $request->validate([
+            'receiving_id' => 'required',
+            'item_id' => 'required | not_in:0',
+            'qty' => 'required|not_in:0',
+        ]);
+
         //validate the data
         // return $request;
-        $orderDetails=[
-            'receiving_id' => $request->receiving_id,
-            'item_id' => $request->item_id,
-            'qty' => $request->qty
-        ];
+        // $orderDetails=[
+        //     'receiving_id' => $request->receiving_id,
+        //     'item_id' => $request->item_id,
+        //     'qty' => $request->qty
+        // ];
 
-        $result = Order::create($orderDetails);
+        // $result = Order::create($orderDetails);
 
-        // return response()->json(['message' => 'success', 'insertedId' => $result->id]);
-         return response()->json($result, 200);
+        // // return response()->json(['message' => 'success', 'insertedId' => $result->id]);
+        //  return response()->json($result, 200);
     }
 
     /**
@@ -70,6 +80,11 @@ class ReceivingItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     public function edit($id)
+     {
+         dump($id);
+     }
 
     /**
      * Update the specified resource in storage.
