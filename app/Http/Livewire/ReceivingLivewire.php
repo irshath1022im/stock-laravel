@@ -22,8 +22,7 @@ class ReceivingLivewire extends Component
     public function render()
     {
 
-        $result = Receiving::paginate(10)
-        ;
+        $result = Receiving::paginate(10);
 
         // return response()->json($result, 200);
         return view('livewire.receiving-livewire', ['receivings' => $result]);

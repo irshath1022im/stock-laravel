@@ -6,5 +6,7 @@
 
     @endcomponent
 
+    {{-- @livewire('receiving-livewire') --}}
+
 
 @endsection

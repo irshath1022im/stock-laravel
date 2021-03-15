@@ -26,21 +26,21 @@
                 <div class="card">
                   <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#test{{$receiving->id}}" aria-expanded="false" aria-controls="test{{$receiving->id}}">
+                      <button  wire:click="$emit('clickedGetReceivingItems')" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#test{{$receiving->id}}" aria-expanded="false" aria-controls="test{{$receiving->id}}">
                         {{ $receiving->receiving_date }} /{{ $receiving->supplier_name}}
                       </button>
                     </h2>
                   </div>
                   <div id="test{{$receiving->id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                     test2
+                      @livewire('receiving-items')
                     </div>
                   </div>
                 </div>
                 @endforeach
               </div>
 
-              {{-- {{ $receivings->links() }} --}}
+              {{ $receivings->links() }}
 
                     {{-- {{-- <tr>
                         <th scope="row">{{$receiving->id}}</th>

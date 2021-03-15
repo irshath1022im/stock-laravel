@@ -1,10 +1,10 @@
 <h4>Order Details</h4>
 {{-- @dump($receiving->orders) --}}
-{{
+{{-- {{
     session(['id' => '10'])
-}}
+}} --}}
 
-@dump(Session::all())
+{{-- @dump(Session::all()) --}}
         <div>
             <a name="" id="" class="btn btn-primary" href="{{ route('receivingItems.edit',['receivingItem' => 10]) }}" role="button">ADD NEW ITEM</a>
 

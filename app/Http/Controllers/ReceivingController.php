@@ -61,7 +61,10 @@ class ReceivingController extends Controller
 
 
         // return response($result);
-        return view('components.forms.createReceivingForm',  ['receiving' => $result[0]]);
+        // return view('components.forms.createReceivingForm',  ['receiving' => $result[0]]);
+        return view('components.receiving.editReceiving', ['receiving' => $result[0]]);
+
+     
     }
 
     public function destroy($id)
