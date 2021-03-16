@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @component('components.forms.createReceivingForm')
-        
-    @endcomponent
-
+    {{-- @dump($receiving) --}}
+    @livewire('edit-receiving', ['receivingId' => $receivingId])
 @endsection

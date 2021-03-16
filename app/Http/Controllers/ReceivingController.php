@@ -51,20 +51,19 @@ class ReceivingController extends Controller
 
         // $result = Receiving::findOrFail($id);
 
-        $result = Receiving::with(['orders' => function($query){
-            return $query->with('item')
-                    ->get();
-                    }])
+        // $result = Receiving::with(['orders' => function($query){
+        //     return $query->with('item')
+        //             ->get();
+        //             }])
 
-        ->where('id', $id)
-        ->get();
-
+        // ->where('id', $id)
+        // ->get();
 
         // return response($result);
         // return view('components.forms.createReceivingForm',  ['receiving' => $result[0]]);
-        return view('components.receiving.editReceiving', ['receiving' => $result[0]]);
+        return view('components.receiving.editReceiving', ['receivingId' => $id]);
 
-     
+
     }
 
     public function destroy($id)

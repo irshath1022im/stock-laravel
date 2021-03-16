@@ -40,7 +40,7 @@ class ReceivingItemsController extends Controller
     public function store(Request $request)
     {
 
-        dump($request->all());
+        // dump($request->all());
 
         $validatedData = $request->validate([
             'receiving_id' => 'required',
@@ -83,7 +83,10 @@ class ReceivingItemsController extends Controller
 
      public function edit($id)
      {
-         dump($id);
+
+        $result = Order::findOrFail($id);
+        $items = Item::get();
+        return view('components.forms.createReceivingItemsForm', ['orderItem' => $result, 'items'=>$items]);
      }
 
     /**
@@ -96,7 +99,17 @@ class ReceivingItemsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return 'from update';
+
+        // dump($request->all());
+        $validatedData = $request->validate([
+            'item_id' => 'required | not_in:0',
+            'qty' => 'required|not_in:0',
+        ]);
+
+        $result = Order::where('id', $id)->update($validatedData);
+
+         return redirect()->route('receiving.edit', ['receiving' => $request->receiving_id])->with('updated', 'Successfully Updateddd');
+
     }
 
     /**

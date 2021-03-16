@@ -5,11 +5,7 @@
 }} --}}
 
 {{-- @dump(Session::all()) --}}
-        <div>
-            <a name="" id="" class="btn btn-primary" href="{{ route('receivingItems.edit',['receivingItem' => 10]) }}" role="button">ADD NEW ITEM</a>
-
-        </div>
-                        <div class="table-responsive">
+               <div class="table-responsive">
                         <table class="table table-bordered">
                         <thead>
                             <tr>
