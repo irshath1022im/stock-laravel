@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data[0]->requested_items as $key=>$requested_item)
+                            {{-- @foreach ($data[0]->requested_items as $key=>$requested_item)
                             <tr>
                                 <td>{{ $key +1 }}</td>
                                 <td>{{ $requested_item->item->name}}</td>
@@ -43,7 +43,7 @@
                                 <td>{{ $requested_item->qty}}</td>
                                 <td>no coloumn in table</td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -83,7 +83,7 @@
                         </thead>
                         <tbody style="border-width: 0px;border-style: none;">
                             <tr style="padding: 0px;border-width: 1px;border-style: none;">
-                                <td style="background: #f7e8d9;padding: 20px;">NAME: {{ $data[0]->staff->staff_name}}:</td>
+                                <td style="background: #f7e8d9;padding: 20px;">NAME: :</td>
                                 <td style="background: #f7e8d9;padding: 20px;">SIGNATURE:</td>
                                 <td style="background: #f7e8d9;padding: 20px;">DATE:</td>
                             </tr>

@@ -26,7 +26,7 @@ class Item extends Model
 
     public function store_request_items()
     {
-        return $this->hasMany('App\StoreRequestItems');
+        return $this->hasMany('App\StoreRequestItem');
     }
 
        public function itemSummary()

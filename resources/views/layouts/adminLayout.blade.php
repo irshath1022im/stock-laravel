@@ -22,7 +22,9 @@
                 <a href="{{ route('category.index')}}"<li class="list-group-item">ADD CATEGORY</li></a>
                 <a href="{{ route('items.index') }}"<li class="list-group-item">ADD ITEMS</li></a>
                   <a href="{{ route('receiving.index')}}"><li class="list-group-item">RECEIVING</li></a>
-                    <li class="list-group-item">ADD DELIVERY</li>
+                    <a href="{{ route('storeRequest.index') }}">
+                            <li class="list-group-item">STORE REQUEST</li>
+                    </a>
                     <li class="list-group-item">ADD STAFF</li>
                     <li class="list-group-item">REPORT</li>
                 </ul>

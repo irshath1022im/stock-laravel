@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class StoreRequest extends Model
 {
     //
-    protected $fillable = ['requesting_date', 'staff_id', 'status'];
+    protected $fillable = ['requesting_date', 'staff_id', 'status', 'remark'];
 
 
     public function staff()
@@ -17,7 +17,7 @@ class StoreRequest extends Model
 
     public function requested_items()
     {
-        return $this->hasMany('App\StoreRequestItems');
+        return $this->hasMany('App\StoreRequestItem');
     }
 
 }

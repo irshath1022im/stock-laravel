@@ -64,7 +64,7 @@ class EditReceiving extends Component
                 'receiving_id' => $this->receivingId
         ]);
             session()->flash('created', 'Item has been added');
-        return redirect()->route('receiving.edit',['receiving'=> $this->receivingId]);
+        // return redirect()->route('receiving.edit',['receiving'=> $this->receivingId]);
 
     }
 
