@@ -1,5 +1,5 @@
 
-@component('components.notifications.created')
+@component('components.notifications.notifications')
 
 @endcomponent
 
@@ -16,10 +16,13 @@
 
       <br>
       <hr/>
-      <h4>Order Items</h4>
-      @component('components.storeRequest.storeRequestItems',['storeRequests'=> $storeRequest]))
+      {{-- @component('components.storeRequest.storeRequestItems',['storeRequests'=> $storeRequest]))
 
-      @endcomponent
+      @endcomponent --}}
+
+      @livewire('store-request-items', [
+          'storeRequestId' =>  $requestId, 
+          'storeRequestItems' => $item->requested_items ])
    @empty
        <div class="alert alert-primary" role="alert">
            <strong>No Data Found...</strong>

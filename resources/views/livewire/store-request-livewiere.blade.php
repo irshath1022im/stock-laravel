@@ -80,7 +80,9 @@
 
         @if ( $storeRequestMode === 'EDIT')
 
-                @livewire('store-request-items', ['storeRequestId' => $requestId, 'storeRequestItems' => $storeRequest->requested_items])
+        @livewire('store-request-items-form',['storeRequestId' => $requestId])
+
+        @livewire('store-request-items', ['storeRequestId' => $requestId, 'storeRequestItems' => $storeRequest->requested_items])
 
         @endif
 

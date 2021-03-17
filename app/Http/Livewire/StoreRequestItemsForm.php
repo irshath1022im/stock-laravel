@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Item;
 use Livewire\Component;
+use App\Item;
 use App\StoreRequestItem;
 use Illuminate\Support\Facades\Request;
 
-class StoreRequestItems extends Component
+class StoreRequestItemsForm extends Component
 {
-
+    
     public $storeRequestId;
     public $storeRequestItems = [];
     public $items=[];
@@ -56,27 +56,16 @@ class StoreRequestItems extends Component
         $this->item_id = 0;
     }
 
-    public function removeStoreRequestItem($lineId)
-    {
 
-        StoreRequestItem::destroy($lineId);
-
-        session()->flash('deleted', 'Request Item has been deleted');
-
-
-    }
-
-
-    public function mount($storeRequestId, $storeRequestItems) // this storeRequestId will receive from parent livewire component , store-request-livewire.blade.php
+    public function mount($storeRequestId) // this storeRequestId will receive from parent livewire component , store-request-livewire.blade.php
     {
         $this->items = Item::get();
         $this->storeRequestId = $storeRequestId;
-        $this->storeRequestItems = $storeRequestItems;
+        // $this->storeRequestItems = $storeRequestItems;
     }
-
-
+    
     public function render()
     {
-        return view('livewire.store-request-items');
+        return view('livewire.store-request-items-form');
     }
 }

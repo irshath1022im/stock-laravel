@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Item;
 use App\Staff;
 use App\StoreRequest;
+use App\StoreRequestItem;
+
 use Livewire\Component;
 use Illuminate\Support\Facades\Request;
 
@@ -33,6 +35,18 @@ class StoreRequestLivewiere extends Component
         'remark' => 'required'
     ];
 
+    protected $listeners =['removeStoreRequestItem'];
+
+
+    public function removeStoreRequestItem($lineId)
+    {
+
+        StoreRequestItem::destroy($lineId);
+
+        session()->flash('deleted', 'Request Item has been deleted');
+
+
+    }
 
     public function mount(Request $request,$storeRequestId)
     {
