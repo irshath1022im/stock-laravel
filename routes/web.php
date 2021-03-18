@@ -7,7 +7,14 @@ use App\Delivery;
 use App\IssuedItem;
 use App\ItemSummary;
 
+use App\Http\Livewire\UserLivewire;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReceivingController;
+use App\Http\Controllers\StoreRequestController;
+use App\Http\Controllers\ReceivingItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'StoreController@index');
+// Route::get('/', 'StoreController@index');
 
 
 Route::get('/admin', function () {
@@ -39,15 +46,16 @@ Route::get('/admin/adminStore', function () {
     return view('adminStore', ['stores' => $stores]);
 })->name('adminStore');
 
-Route::resource('/store', 'StoreController');
+Route::resource('/store', StoreController::class);
 
-Route::resource('/admin/category', 'CategoryController');
+Route::resource('/admin/category', CategoryController::class);
 
-Route::resource('/admin/items', 'ItemsController');
+Route::resource('/admin/items', ItemsController::class);
 
-Route::resource('/admin/receiving', 'ReceivingController');
-Route::resource('/admin/receivingItems', 'ReceivingItemsController');
-Route::resource('/admin/storeRequest', 'StoreRequestController');
+Route::resource('/admin/receiving', ReceivingController::class);
+Route::resource('/admin/receivingItems', ReceivingItemsController::class);
+Route::resource('/admin/storeRequest', StoreRequestController::class);
+Route::get('/admin/user', UserLivewire::class)->name('adminUser');
 
 Route::get('/admin/adminItems', function () {
     return view('adminItems');
@@ -63,21 +71,21 @@ Route::get('/admin/adminItems', function () {
 
 // Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
 
-Route::get('/store/storeSummary/{store_type}', 'StoreController@getStoreSummary')->name('storeSummary');
+// Route::get('/store/storeSummary/{store_type}', 'StoreController@getStoreSummary')->name('storeSummary');
 
 
 
 
 
 
-Route::get('/items', 'ItemController@index')->name('items');
+// Route::get('/items', 'ItemController@index')->name('items');
 
 // Route::get('/items/delivery', 'ItemController@store');
 // Route::get('/items/issue', 'ItemController@issue');
 // Route::get('/items/update/{delivery}/{lineId}', 'ItemController@updateIssued');
 
 
-Route::get('/category/{category}', 'CategoryController@category')->name('category');
+// Route::get('/category/{category}', 'CategoryController@category')->name('category');
 
 Route::get('items/transections/{name}', function ($id) {
 

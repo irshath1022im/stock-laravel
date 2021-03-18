@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 
     @livewireStyles
+
 </head>
 <body>
 
@@ -25,7 +26,7 @@
                     <a href="{{ route('storeRequest.index') }}">
                             <li class="list-group-item">STORE REQUEST</li>
                     </a>
-                    <li class="list-group-item">ADD STAFF</li>
+                    <a href="{{ route('adminUser') }}"><li class="list-group-item">ADD STAFF</li></a>
                     <li class="list-group-item">REPORT</li>
                 </ul>
         </div>
@@ -38,6 +39,32 @@
 
 
     @livewireScripts
+
+    <script>
+        window.addEventListener('closeModal', event => {
+            //close the addUserModal
+            $('#modalForm').modal('hide');
+        })
+        window.addEventListener('showModal', event => {
+            //close the addUserModal
+            $('#modalForm').modal('show');
+        })
+
+        window.addEventListener('openDeleteModal', event => {
+            //openDelteModal
+            $('#deleteModal').modal('show');
+        })
+
+        window.addEventListener('closeDeleteModal', event => {
+            //openDelteModal
+            $('#deleteModal').modal('hide');
+        })
+
+        window.addEventListener('openUpdateModal', event => {
+            //openDelteModal
+            $('#updateModal').modal('show');
+        })
+        </script>
 
 <script src="{{ mix('js/app.js') }}"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
