@@ -18,8 +18,8 @@
     <form method="POST" action="{{ !isset($item) ? route('items.store') : route('items.update', ['item'=>$item->id]) }}">
         @csrf
         @isset($item)
-        {{-- @method('PUT') --}}
-    @endisset
+            @method('PUT')
+        @endisset
 
     <div class="form-group">
         <label htmlFor="formGroupExampleInput">Item Name</label>

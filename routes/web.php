@@ -8,11 +8,14 @@ use App\IssuedItem;
 use App\ItemSummary;
 
 use App\Http\Livewire\UserLivewire;
+use App\Http\Livewire\ItemsLivewire;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReceivingController;
+use App\Http\Controllers\ItemReportController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
 
@@ -33,7 +36,7 @@ use App\Http\Controllers\ReceivingItemsController;
 //     return view('welcome');
 // });
 
-// Route::get('/', 'StoreController@index');
+Route::get('/', [StoreController::class,'index']);
 
 
 Route::get('/admin', function () {
@@ -63,22 +66,23 @@ Route::get('/admin/adminItems', function () {
 
 
 
-// Route::get('/report/items', 'ItemReportController@item' );
+// Route::get('/report/items', [ItemReportController::class,'item'] );
 
 // Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
 
-// Route::get('/reports/{store}', 'ItemReportController@item')->name('storeReport');
+Route::get('/reports/{store}', [ItemReportController::class,'item'])->name('storeReport');
 
 // Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
 
-// Route::get('/store/storeSummary/{store_type}', 'StoreController@getStoreSummary')->name('storeSummary');
+Route::get('/store/storeSummary/{store_type}', [StoreController::class,'getStoreSummary'])->name('storeSummary');
 
 
 
 
 
 
-// Route::get('/items', 'ItemController@index')->name('items');
+Route::get('/items', ItemsLivewire::class)->name('items');
+Route::get('/items2', [ItemController::class, 'index'])->name('items2');
 
 // Route::get('/items/delivery', 'ItemController@store');
 // Route::get('/items/issue', 'ItemController@issue');
@@ -99,7 +103,6 @@ Route::get('products', function () {
     return view('products');
 });
 
-// // Route::get('/items', ItemsLivewire::class);
 
 
 

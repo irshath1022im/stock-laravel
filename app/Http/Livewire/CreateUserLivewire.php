@@ -56,11 +56,12 @@ class CreateUserLivewire extends Component
 
         $this->emit('refreshParent');
         $this->dispatchBrowserEvent('closeModal');
-        $this->clearVar();
+        return redirect()->route('adminUser');
+        // $this->clearVar();
 
         // dump($result);
 
-        session()->flash('created', 'New User has been Added....');
+
     }
 
     public function clearVar()

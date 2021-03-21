@@ -20,25 +20,25 @@ class ItemController extends Controller
     {
 
 
-        // $query = Item::
-        //     addSelect([
-        //     'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
-        //         ->groupBy('item_id')
-        //         ->whereColumn('item_id', 'items.id')
-        //         ])
-        //     ->addSelect([
-        //         'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
-        //             ->groupBy('item_id')
-        //             ->whereColumn('item_id', 'items.id')
-        //             ])->get();
+        $query = Item::
+            addSelect([
+            'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+                ->groupBy('item_id')
+                ->whereColumn('item_id', 'items.id')
+                ])
+            ->addSelect([
+                'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
+                    ->groupBy('item_id')
+                    ->whereColumn('item_id', 'items.id')
+                    ])->get();
 
 
 
-        //     $query->map(function ($item){
-        //        return $item->balance = $item->issuedQty - $item->receivedQty;
-        //          });
+            $query->map(function ($item){
+               return $item->balance = ($item->initialQty +$item->receivedQty) - $item->issuedQty ;
+                 });
 
-        //   return $query;
+          return $query;
 
 
         //          return $sorted;
@@ -52,7 +52,7 @@ class ItemController extends Controller
     // } else {
     //    // $result = $query->max('balance');
     //    $result = $query;
-    //     return $result;
+        // return $query;
 
        return view('items');
 

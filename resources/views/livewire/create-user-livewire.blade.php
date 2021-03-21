@@ -1,8 +1,8 @@
 <div>
 
-    @component('components.notifications.notifications')
+    {{-- @component('components.notifications.notifications')
 
-    @endcomponent
+    @endcomponent --}}
 
     <form wire:submit.prevent="addNewUser">
 

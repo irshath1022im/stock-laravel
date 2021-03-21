@@ -11,6 +11,6 @@ class DeliverySeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Delivery::class, 100)->create();
+        factory(App\StoreRequest::class, 100)->create();
     }
 }

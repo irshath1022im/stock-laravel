@@ -18,7 +18,7 @@
         @csrf
 
         @isset($category)
-            @method('PUT')
+             @method('PUT')
         @endisset
             <div class="form-group">
               <label for="">Name</label>
@@ -33,6 +33,11 @@
                 <option value=0>Select</option>
                  @foreach ($stores as $store)
                      <option value={{$store->id}}
+                        {{-- {{ isset($category['store_id']) &&  $category['store_id'] == $store->id ?? 'selected' }} --}}
+                        @isset($category['store_id'])
+                            {{ 'selected' }}
+                        @endisset
+
                      >{{ $store->name}}</option>
                  @endforeach
              </select>

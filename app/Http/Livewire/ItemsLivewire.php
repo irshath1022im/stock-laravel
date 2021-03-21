@@ -68,24 +68,51 @@ class ItemsLivewire extends Component
             $sortDirection = $this->sortDirection;
             $searchByItem_name = $this->searchByItem_name;
 
-         $query = DB::table('item_summaries')
-                        ->join('items', 'item_summaries.item_id', '=', 'items.id')
-                        ->join('categories', 'items.category_id' , '=', 'categories.id')
-                        ->select('item_id','totalReceived','totalIssued','items.*', 'categories.category',
-                                        DB::Raw('totalReceived -totalIssued as Balance'))
-                        ->when($searchByItem_name, function($query, $searchByItem_name){
-                                                return $query->where('name','like', '%'.$searchByItem_name.'%');
-                                             })
-                        ->when( $this->sortBy, function($query) use($sortBy, $sortDirection) {
-                                    return $query->orderBy($sortBy, $sortDirection);
-                                    })
-                        ;
-                        // ->appends($request->except('page'))
+        //  $query = DB::table('item_summaries')
+        //                 ->join('items', 'item_summaries.item_id', '=', 'items.id')
+        //                 ->join('categories', 'items.category_id' , '=', 'categories.id')
+        //                 ->select('item_id','totalReceived','totalIssued','items.*', 'categories.category',
+        //                                 DB::Raw('totalReceived -totalIssued as Balance'))
+        //                 ->when($searchByItem_name, function($query, $searchByItem_name){
+        //                                         return $query->where('name','like', '%'.$searchByItem_name.'%');
+        //                                      })
+        //                 ->when( $this->sortBy, function($query) use($sortBy, $sortDirection) {
+        //                             return $query->orderBy($sortBy, $sortDirection);
+        //                             })
+        //                 ;
+        //                 // ->appends($request->except('page'))
 
-        $result = $query->paginate($this->perPage);
+        // $result = $query->paginate($this->perPage);
+
+        $query = Item::
+            addSelect([
+            'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+                ->groupBy('item_id')
+                ->whereColumn('item_id', 'items.id')
+                ])
+            ->addSelect([
+                'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
+                    ->groupBy('item_id')
+                    ->whereColumn('item_id', 'items.id')
+                    ])
+            ->when($searchByItem_name, function($query, $searchByItem_name){
+                            return $query->where('name','like', '%'.$searchByItem_name.'%');
+                            })
+            ->when( $this->sortBy, function($query) use($sortBy, $sortDirection) {
+                    return $query->orderBy($sortBy, $sortDirection);
+                    })
+             ->get();
+
+
+
+            $query->map(function ($item){
+               return $item->balance = ($item->initialQty +$item->receivedQty) - $item->issuedQty ;
+                 });
+
+
 
         return view('livewire.items-livewire', [
-            "items" => $result]);
+            "items" => $query])->extends('layout');
     }
 
 

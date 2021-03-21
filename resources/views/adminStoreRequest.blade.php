@@ -2,7 +2,7 @@
 @extends('layouts.adminLayout')
 
 @section('content')
-    
+
 
    @if($message = session('stored'))
    <div class="alert alert-success" role="alert">
@@ -54,7 +54,7 @@
                   <div>
                     <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#test{{$request->id}}" aria-expanded="false" aria-controls="test{{$request->id}}">
-                        {{ $request->id}} /{{ $request->requesting_date }} /{{ $request->staff->staff_name}} / {{ $request->status}}
+                        {{ $request->id}} /{{ $request->requesting_date }} / {{ $request->status}}
                     </button>
                   </div>
 

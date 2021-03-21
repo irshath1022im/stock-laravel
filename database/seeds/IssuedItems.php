@@ -11,6 +11,6 @@ class IssuedItems extends Seeder
      */
     public function run()
     {
-        factory(App\IssuedItem::class, 200)->create();
+        factory(App\StoreRequestItem::class, 200)->create();
     }
 }

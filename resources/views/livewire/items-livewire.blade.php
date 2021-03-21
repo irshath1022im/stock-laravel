@@ -2,8 +2,8 @@
 {{-- @dump($items, $sortBy) --}}
 
 
-    <div>
 
+      {{-- search menu --}}
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -34,51 +34,48 @@
                     </div>
                   </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    {{-- end of row --}}
+
+
 
     {{ $searchByItem_name}}
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Item ID</th>
-          <th scope="col">Name</th>
-          {{-- <th scope="col">Category</th> --}}
-          <th scope="col">Store</th>
-          {{-- <th scope="col">Initial Qty</th> --}}
-          <th scope="col">Total Purchase</th>
-          <th scope="col">Total Delivery</th>
-          <th scope="col">Stock</th>
-        </tr>
-      </thead>
-      <tbody>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Item ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Store</th>
+                <th scope="col">Initial Qty</th>
+                <th scope="col">Total Purchase</th>
+                <th scope="col">Total Delivery</th>
+                <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
 
 
-          @forelse ($items as $item)
+                @forelse ($items as $item)
 
 
-          <tr>
-              <th scope="row">{{$item->id}}</th>
-              <td>{{ $item->name}}</td>
-              {{-- <td>{{ $item->category->category}}</td> --}}
-              <td>Uniform</td>
-              {{-- <td>{{ $item->initialQty}}</td> --}}
-              <td>{{ $item->totalReceived }}</td>
-              <td>{{ $item->totalIssued }}</td>
-          <td class="{{ $item->Balance > 0 ? '' : 'bg-danger' }}">{{ $item->Balance}}</td>
-          </tr>
-        @empty
+                <tr>
+                    <th scope="row">{{$item->id}}</th>
+                    <td>{{ $item->name}}</td>
+                    <td>{{ $item->category->category}}</td>
+                    <td>Uniform</td>
+                    <td>{{ $item->initialQty}}</td>
+                    <td>{{ $item->receivedQty }}</td>
+                    <td>{{ $item->issuedQty }}</td>
+                    <td class="{{ $item->balance > 0 ? '' : 'bg-danger' }}">
+                    {{ $item->balance}}</td>
+                </tr>
+                @empty
 
-        @endforelse
-      </tbody>
-    </table>
-
-    <div>
-    </div>
-   <div class="pagination justify-content-center">
-        {{ $items->links()}}
-   </div>
+                @endforelse
+            </tbody>
+        </table>
 
   </div>

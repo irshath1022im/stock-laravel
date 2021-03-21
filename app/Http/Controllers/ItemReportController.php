@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\ItemSummary;
-use App\Store;
 use PDF;
+use App\Item;
+use App\Order;
+use App\Store;
+use App\Category;
+use App\IssuedItem;
+use App\ItemSummary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,22 +17,54 @@ class ItemReportController extends Controller
     public function item($store)
     {
 
+        // dump($store);
+
+
         if ( $store === 'uniform') {
 
-            $result = Store::with(['category' => function($query){
-                return $query->with(['item' => function($query){
-                   return $query->with(['itemSummary' => function($query){
-                       return $query->select('*',  DB::Raw('totalReceived -totalIssued as Balance'));
-                   }])->get();
-                }])
-                       ->get();
-               }])
-                       ->where('name', $store)
-                       ->get();
+            // $result = Store::with(['category' => function($query){
+            //     return $query->with(['item' => function($query){
+            //        return $query->with(['itemSummary' => function($query){
+            //            return $query->select('*',  DB::Raw('totalReceived -totalIssued as Balance'));
+            //        }])->get();
+            //     }])
+            //            ->get();
+            //    }])
+            //            ->where('name', $store)
+            //            ->get();
+
+            // $query = Item::
+            // addSelect([
+            // 'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+            //     ->groupBy('item_id')
+            //     ->whereColumn('item_id', 'items.id')
+            //     ])
+            // ->addSelect([
+            //     'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
+            //         ->groupBy('item_id')
+            //         ->whereColumn('item_id', 'items.id')
+            //         ])
+            // ->get();
+
+
+
+            // $query->map(function ($item){
+            //    return $item->balance = ($item->initialQty +$item->receivedQty) - $item->issuedQty ;
+            //      });
+
+                $query= Category::with(['item'])
+                ->addSelect([
+                        'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+                            ->groupBy('item_id')
+                            ])
+                ->get();
+
+                 return $query;
 
             // return $result[0]->category[0]->item[0]->itemSummary;
+            // return $result;
 
-            return view('reports.uniforms', ['items' => $result]);
+            return view('reports.uniforms', ['categories' => $query]);
 
                 // $pdf = PDF::loadView('reports.uniforms', compact('result'))->setPaper('a4', 'portrait');
                 // return $pdf->stream('reports.uniforms.pdf');
