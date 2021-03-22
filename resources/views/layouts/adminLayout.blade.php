@@ -13,8 +13,11 @@
 </head>
 <body>
 
+    <div class="row">
+        @include('components.navbar')
+    </div>
 
-
+<section class="container-fluid" style="margin-top: 60px">
     <div class="row">
 
         <div class="col-4 border border-primary p-2">
@@ -37,7 +40,7 @@
         </div>
     </div>
 
-
+</section>
     @livewireScripts
 
     <script>

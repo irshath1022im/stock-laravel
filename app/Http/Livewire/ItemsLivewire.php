@@ -6,6 +6,7 @@ use App\Item;
 use App\Order;
 use App\IssuedItem;
 use Livewire\Component;
+use App\StoreRequestItem;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
@@ -86,7 +87,7 @@ class ItemsLivewire extends Component
 
         $query = Item::
             addSelect([
-            'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+            'issuedQty' => StoreRequestItem::select( DB::Raw('SUM(qty)'))
                 ->groupBy('item_id')
                 ->whereColumn('item_id', 'items.id')
                 ])
@@ -98,9 +99,6 @@ class ItemsLivewire extends Component
             ->when($searchByItem_name, function($query, $searchByItem_name){
                             return $query->where('name','like', '%'.$searchByItem_name.'%');
                             })
-            ->when( $this->sortBy, function($query) use($sortBy, $sortDirection) {
-                    return $query->orderBy($sortBy, $sortDirection);
-                    })
              ->get();
 
 

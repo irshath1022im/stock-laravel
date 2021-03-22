@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Support\Collection;
 use App\Item;
 use App\Order;
 use App\Receiving;
 use App\IssuedItem;
+use App\StoreRequestItem;
+use App\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +23,7 @@ class ItemController extends Controller
 
         $query = Item::
             addSelect([
-            'issuedQty' => IssuedItem::select( DB::Raw('SUM(qty)'))
+            'issuedQty' => StoreRequestItem::select( DB::Raw('SUM(qty)'))
                 ->groupBy('item_id')
                 ->whereColumn('item_id', 'items.id')
                 ])

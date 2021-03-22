@@ -14,14 +14,11 @@
 
 <body>
     {{-- @dump($items) --}}
-    @foreach ($categories as $item)
-
+    @forelse ($result as $store)
     <section class="container" style="padding: 0px;width: 750;height: 100vh;">
 
-
-
         <div class="container" style="border: 16px solid rgb(22,5,125);height: 98vh;margin-top: 0px;margin-left: 0px;">
-        <h1 class="text-center text-uppercase" style="font-size: 43px;font-family: Aclonica, sans-serif;padding: 9px;background: #e4dcdc;margin-bottom: 24px;height: 10vh;">{{ $item->category}}</h1>
+        <h1 class="text-center text-uppercase" style="font-size: 43px;font-family: Aclonica, sans-serif;padding: 9px;background: #e4dcdc;margin-bottom: 24px;height: 10vh;">{{ $store['category']}}</h1>
         <img class="img-rounded" src="{{asset('images/hoodies.jpg') }}" style="width: 650px;height: 50vh;margin: 0px;margin-bottom: 35px;border-style: none;border-color: rgb(227,3,3);margin-left: 14px;">
             <div>
                 <div class="table-responsive" style="padding: 0;margin-bottom: 30px;border-style: solid;border-color: rgb(234,108,108);font-family: Anaheim, sans-serif;">
@@ -36,13 +33,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                     @foreach ($item->item as $category)
+                     @foreach ($store['items'] as $item)
                             <tr>
-                                <td>{{ $category->id}}</td>
-                                <td>{{ $category->name}}</td>
-                                <td>{{ $category->receivedQty}}</td>
-                                <td>{{ $category->issuedQty}}</td>
-                               <td>{{ $category->balance}}</td>
+                                <td>{{ $item['id']}}</td>
+                                <td>{{ $item['name']}}</td>
+                                <td>{{ $item['receivedQty']}}</td>
+                                <td>{{ $item['issuedQty']}}</td>
+                               <td>{{ $item['balance']}}</td>
                             </tr>
                          @endforeach
 
@@ -54,8 +51,10 @@
 
 
 </section>
+@empty
+    <h4>No Data Found .... </h4>
 
-@endforeach
+@endforelse
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

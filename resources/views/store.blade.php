@@ -7,22 +7,42 @@
 
 
     <div class="container">
-       @foreach ($data as $store)
-           {{-- {{ $item->category}} --}}
+
 
            <div class="d-flex justify-content-around flex-wrap">
-            @foreach ($store->category as $singleCategory)
-                    {{-- @dump($singleCategory->category, $item->name) --}}
+            @foreach ($result as $category)
 
-                @component('components.categoryItemsQty', ['singleCategory' => $singleCategory])
 
-                @endcomponent
+            <div class="card p-3 m-2" style="width: 16rem;">
 
-            @endforeach
 
+                <a href="#">
+                    <h5 class="card-title text-uppercase text-center">
+                        {{ $category['category']}}
+                    </h5>
+                </a>
+
+                <img class="card-img-top" src=" {{ asset('assets/images/tyre.jpg')}}" alt="Card image cap">
+
+                {{-- card body --}}
+                        @forelse ($category['items'] as $item)
+                            @component('components.categoryItemsQty', ['item' => $item])
+
+                            @endcomponent
+
+                            @empty
+
+                                <div class="alert alert-primary" role="alert">
+                                    <strong>No Items Found ...</strong>
+                                </div>
+
+                        @endforelse
+
+                </div>
+                @endforeach
             </div>
 
-       @endforeach
+
     </div>
 
 

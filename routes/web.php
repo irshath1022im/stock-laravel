@@ -38,7 +38,6 @@ use App\Http\Controllers\ReceivingItemsController;
 
 Route::get('/', [StoreController::class,'index']);
 
-
 Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
@@ -65,24 +64,25 @@ Route::get('/admin/adminItems', function () {
 })->name('adminItems');
 
 
+Route::get('/items', ItemsLivewire::class)->name('items');
+Route::get('/items2', [ItemController::class, 'index'])->name('items2');
+
+Route::get('/reports/{store}', [ItemReportController::class,'item'])->name('storeReport');
 
 // Route::get('/report/items', [ItemReportController::class,'item'] );
 
 // Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
 
-Route::get('/reports/{store}', [ItemReportController::class,'item'])->name('storeReport');
 
 // Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
 
-Route::get('/store/storeSummary/{store_type}', [StoreController::class,'getStoreSummary'])->name('storeSummary');
+Route::get('/store/storeSummary/{store_type}', [StoreController::class,'storeSummary'])->name('storeSummary');
 
 
 
 
 
 
-Route::get('/items', ItemsLivewire::class)->name('items');
-Route::get('/items2', [ItemController::class, 'index'])->name('items2');
 
 // Route::get('/items/delivery', 'ItemController@store');
 // Route::get('/items/issue', 'ItemController@issue');

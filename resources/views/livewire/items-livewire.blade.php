@@ -11,7 +11,7 @@
                     <select class="form-control" name="" id="" wire:model="sortBy">
                       <option value="id">ID</option>
                       <option value="name">Name</option>
-                      <option value="Balance">Stock</option>
+                      <option value="balance">Stock</option>
                     </select>
                   </div>
             </div>

@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Order;
 use App\Store;
+use App\Category;
+use App\StoreRequestItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -116,24 +119,47 @@ class StoreController extends Controller
 
     public function storeSummary($store_type)
     {
-        $result = Store::with(['category' => function($query){
-             return $query->with(['item' => function($query){
-                return $query->with('itemSummary')->get();
-             }])
-                    ->get();
-            }])
-                    ->where('name', $store_type)
-                    ->get();
+
+        $query= Category::with(['item' => function($query)
+        {
+            return $query->addSelect([
+                'issuedQty' => StoreRequestItem::select( DB::Raw('SUM(qty)'))
+                    ->groupBy('item_id')
+                    ->whereColumn('item_id', 'items.id')
+                    ])
+                ->addSelect([
+                    'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
+                    ->groupBy('item_id')
+                    ->whereColumn('item_id', 'items.id')
+                    ]);
+        }, 'store'
+        ])
+        ->get();
+
+        // return $query;
+
+    $newCollection = $query->map(function ($store){
+            return [
+                 'id'=> $store->id,
+                'category' => $store->category,
+                'store_id' => $store->store_id,
+                'items' => $store->item->map( function ($item) {
+                    return [
+                        'id' =>$item->id,
+                        'name' => $item->name,
+                        'initialQty' => $item->initialQty,
+                        'issuedQty' => $item->issuedQty,
+                        'receivedQty' =>$item->receivedQty,
+                        'balance' => $item->initialQty + $item->receivedQty - $item->issuedQty
+                          ];
+                     }),
+                'store_name' => $store->store->name
+            ];
+        });
 
 
-
-
-    //   return $result;
-        //dump($result);
-
-         //return response()->jsonp($callback, $result, 200, $headers);
-
-      return view('store', ['stores'=>$result]);
+        // return $newCollection->where('store_name', '=', $store_type);
+      return view('store', ['result'=>$newCollection ->where('store_name', '=', $store_type)]);
     }
 
     public function getStoreSummary($store)
@@ -154,11 +180,10 @@ class StoreController extends Controller
 
         $result = Store::with(['category' => function($query){
             return $query->with(['item' => function($query){
-               return $query->with(['itemSummary' => function($query){
-                       return $query->select('*',DB::Raw('totalReceived - totalIssued as Balance'));
-                                   }])->get();
-               }])
-              ->get();
+               return $query;
+                }
+            ])
+            ->get();
         }])
                    ->where('name', $store)
                    ->get();
