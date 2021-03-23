@@ -38,8 +38,8 @@
                     <tr>
                         <td scope="row">{{ $store->id}}</td>
                         <td scope="row">
-                            {{ $store->coverPicture}}
-                            <img class="w-50 img-fluid" src="http://localhost:8000/storage/{{$store->coverPicture }}" />
+                            <img class="w-50 img-fluid" 
+                            src="{{ Storage::url($store->coverPicture) }}" />
                         </td>
                         <td class="text-uppercase">{{ $store->name}}</td>
                         <td>
