@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
 
-    public $fillable = ['name'];
+    public $fillable = ['name', 'coverPicture'];
     //each store has many category
     public function category()
     {

@@ -7,6 +7,7 @@ use App\Category;
 use App\StoreRequestItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
@@ -47,17 +48,50 @@ class StoreController extends Controller
         //1. validate
         // by default, the Request method has validate properties
 
-       $validatedData = $request->validate([
-            'name' => 'required'
-        ]);
 
-        // dump( $validatedData);
+         if( $request->hasfile('store_logo')){
+             $file = $request->file('store_logo');
+             dump($file);
+             dump($file->getClientMimeType());
+             dump($file->getClientOriginalExtension());
 
-        //2. insert into db
-        // dump($request));
-        $insertedData = Store::create($validatedData);
+            // dump($file->store('storeCoverPhotos'));
 
-        return redirect('admin/adminStore')->with('message', 'Store Has been Added');
+            //automaticllly put the filename
+            dump(Storage::disk('public')->putFile('storeCoverPhotos', $file));
+
+           $name1 = $file->storeAs('storeCoverPhotos', $request->name . '.'. $file->guessExtension());
+           $name2 = Storage::disk('local')->putFileAs('storeCoverPhotos', $file, $request->name. '.'. $file->guessExtension() );
+
+           dump(Storage::url($name1));
+           dump(Storage::disk('local')->url($name2));
+
+            // dump(Storage::disk('local')->put('store_logo', $file));
+            // dump(Storage::put('text', $file));
+            //  dump($file->store('store_coverPhotos'));
+            //  $filePath = $request->file('store_logo')->store('store_coverPhotos');
+
+
+            }
+
+    //  dump($file->store('store_coverPhotos'));
+
+
+    //    $validatedData = $request->validate([
+    //         'name' => 'required'
+    //     ]);
+
+    //     $newStore = [
+    //         'name' => $request->name,
+    //         'coverPicture' => $filePath
+    //     ];
+
+    //     // dump( $validatedData);
+
+    //     //2. insert into db
+    //     // dump($request));
+
+        // return redirect()->route('adminStore')->with('created', 'New Store has been added');
     }
 
     /**
