@@ -21,9 +21,9 @@
       @endcomponent --}}
 
       @livewire('store-request-items', [
-          'storeRequestId' =>  $requestId, 
+          'storeRequestId' =>  $requestId,
           'storeRequestItems' => $item->requested_items ])
-   @empty
+        @empty
        <div class="alert alert-primary" role="alert">
            <strong>No Data Found...</strong>
        </div>

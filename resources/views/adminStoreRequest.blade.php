@@ -60,10 +60,14 @@
 
                     <div>
 
-                    <a href=" {{ route('storeRequest.edit',['storeRequest'=> $request->id]) }}">
-                        <img src="{{ asset('icons/edit_black_24dp.svg') }}" alt="Edit">
-                    </a>
+                        <a href=" {{ route('storeRequest.edit',['storeRequest'=> $request->id]) }}">
+                            <img src="{{ asset('icons/edit_black_24dp.svg') }}" alt="Edit">
+                        </a>
 
+                    </div>
+
+                    <div><a href="{{ route('storeRequestPrint',['storeRequestId' => $request->id ]) }}" target="_blank">
+                        <button class="btn btn-sm btn-primary">Print Request</button></a>
                     </div>
               </div>
 

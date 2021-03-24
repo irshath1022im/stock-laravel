@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use PDF;
 use App\StoreRequest;
 use Illuminate\Http\Request;
 
@@ -100,5 +102,25 @@ class StoreRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeRequest($id)
+    {
+        $result = StoreRequest::with(['staff', 'requested_items' => function($query){
+            return $query->with('item')->get();
+        }])
+                ->select('id', 'requesting_date', 'staff_id', 'status', 'remark')
+                ->where('id', $id)
+                ->get();
+
+
+                // dump($result);
+
+    //   return response($result);
+      return view('reports.storeRequest', ['data' => $result]);
+
+    //    $pdf = PDF::loadView('reports.storeRequest', compact('data'))->setPaper('a4', 'portrait');
+    //     return $pdf->download('reports.storeRequest.pdf');
+    //    return $pdf->stream('reports.storeRequest.pdf');
     }
 }

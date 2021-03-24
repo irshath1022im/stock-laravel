@@ -10,9 +10,11 @@ use App\ItemSummary;
 use App\Http\Livewire\UserLivewire;
 use App\Http\Livewire\ItemsLivewire;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoreRequest;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReceivingController;
 use App\Http\Controllers\ItemReportController;
@@ -48,41 +50,35 @@ Route::get('/admin/adminStore', function () {
     return view('adminStore', ['stores' => $stores]);
 })->name('adminStore');
 
-Route::resource('/store', StoreController::class);
 
 Route::resource('/admin/category', CategoryController::class);
-
 Route::resource('/admin/items', ItemsController::class);
-
 Route::resource('/admin/receiving', ReceivingController::class);
 Route::resource('/admin/receivingItems', ReceivingItemsController::class);
 Route::resource('/admin/storeRequest', StoreRequestController::class);
 Route::get('/admin/user', UserLivewire::class)->name('adminUser');
-
-Route::get('/admin/adminItems', function () {
-    return view('adminItems');
-})->name('adminItems');
+Route::get('/admin/reports', [ReportController::class, 'index'])->name('adminReports');
 
 
+Route::resource('/store', StoreController::class);
 Route::get('/items', ItemsLivewire::class)->name('items');
 Route::get('/items2', [ItemController::class, 'index'])->name('items2');
 
 Route::get('/reports/{store}', [ItemReportController::class,'item'])->name('storeReport');
+
+Route::get('/store/storeSummary/{store_type}', [StoreController::class,'storeSummary'])->name('storeSummary');
+
 
 // Route::get('/report/items', [ItemReportController::class,'item'] );
 
 // Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
 
 
-// Route::get('/storeRequest/{storeRequestId}' , 'StoreRequestController@storeRequest');
+Route::get('/storeRequest/{storeRequestId}' , [StoreRequestController::class, 'storeRequest'])->name('storeRequestPrint');
 
-Route::get('/store/storeSummary/{store_type}', [StoreController::class,'storeSummary'])->name('storeSummary');
-
-
-
-
-
-
+// Route::get('/admin/adminItems', function () {
+//     return view('adminItems');
+// })->name('adminItems');
 
 // Route::get('/items/delivery', 'ItemController@store');
 // Route::get('/items/issue', 'ItemController@issue');
@@ -91,17 +87,17 @@ Route::get('/store/storeSummary/{store_type}', [StoreController::class,'storeSum
 
 // Route::get('/category/{category}', 'CategoryController@category')->name('category');
 
-Route::get('items/transections/{name}', function ($id) {
+// Route::get('items/transections/{name}', function ($id) {
 
-    $result = IssuedItem::with('staff')->get();
+//     $result = IssuedItem::with('staff')->get();
 
-    return $result;
+//     return $result;
 
-});
+// });
 
-Route::get('products', function () {
-    return view('products');
-});
+// Route::get('products', function () {
+//     return view('products');
+// });
 
 
 

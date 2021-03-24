@@ -4,40 +4,19 @@
 @section('content')
 
             <div>
-                <h3>ITEMS </h3>
+                <h3>STORES </h3>
             </div>
 
-            @if($message = session('message'))
-                <div class="alert alert-success" role="alert">
-                  <strong>{{ $message}}</strong>
-              </div>
-            @endif
+              <div class="d-flex flex-wrap justify-content-around">
+                @foreach ($stores as $store)
 
-            @if($message = session('updated'))
-            <div class="alert alert-info" role="alert">
-              <strong>{{ $message}}</strong>
-          </div>
-        @endif
+                    @component('components.storeReport', ['store'=> $store])
 
-           @if(session('deleted'))
-            <div class="alert alert-danger" role="alert">
-                <strong>{{ session('deleted')}}</strong>
-            </div>
-            @endif
+                    @endcomponent
+
+                @endforeach
 
 
-              {{-- @livewire('admin.store') --}}
-              <div>
-
-                <div>
-                    <div class="input-group mb-3">
-                        <a name="" id="" class="btn btn-primary" href="{{ route('items.create') }}"role="button">NEW ITEM</a>
-                    </div>
-                </div>
-
-                @component('components.items', ['items'=> $items])
-
-                @endcomponent
 
             </div>
 
