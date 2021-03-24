@@ -51,7 +51,7 @@ class StoreController extends Controller
 
          if( $request->hasfile('store_logo')){
              $file = $request->file('store_logo');
-    
+
           $path = Storage::disk('public')->putFileAs('storeCoverPhotos', $file, $request->name. '.'. $file->guessExtension() );
 
          }
@@ -108,8 +108,30 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dump($request->hasfile('store_logo'));
+
+        if($request->hasfile('store_logo')) {
+           $file = $request->file('store_logo');
+        //    dump($file);
+
+            //save in storage and get the relative path
+
+          $path = Storage::disk('public')->putFileAs('storeCoverPhotos', $file, $request->name. '.'. $file->guessExtension());
+        }
+
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $updatedStore = [
+            'name' => $request->name,
+            'coverPicture' => $path
+        ];
+
+
         $result = Store::where('id', $id)
-                        ->update(['name' => $request->name]);
+                        ->update($updatedStore);
+
         return redirect('admin/adminStore')->with('message', 'Store Has been updated!!!');
     }
 
@@ -153,6 +175,7 @@ class StoreController extends Controller
                  'id'=> $store->id,
                 'category' => $store->category,
                 'store_id' => $store->store_id,
+                'coverPicture' => $store->coverPicture,
                 'items' => $store->item->map( function ($item) {
                     return [
                         'id' =>$item->id,

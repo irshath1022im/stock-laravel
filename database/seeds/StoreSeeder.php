@@ -15,8 +15,8 @@ class StoreSeeder extends Seeder
     public function run()
     {
         $stores = [
-            ['name' => 'uniform', 'coverPicture' => null],
-            ['name' => 'promotion', 'coverPicture' => null]
+            ['name' => 'uniform', 'coverPicture' => 'storeCoverPhotos/uniform.png'],
+            ['name' => 'promotion', 'coverPicture' => 'storeCoverPhotos/promotion.jpg']
         ];
 
         Store::insert($stores);

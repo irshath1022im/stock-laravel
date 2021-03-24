@@ -14,7 +14,10 @@
 @endif
 
 {{-- @dump($category) --}}
-    <form method="POST" action="{{ isset($category) ? route('category.update',['category'=>$category->id]) : route('category.store') }}">
+    <form method="POST"
+    action="{{ isset($category) ? route('category.update',['category'=>$category->id]) : route('category.store') }}"
+    enctype="multipart/form-data"
+    >
         @csrf
 
         @isset($category)
@@ -33,14 +36,16 @@
                 <option value=0>Select</option>
                  @foreach ($stores as $store)
                      <option value={{$store->id}}
-                        {{-- {{ isset($category['store_id']) &&  $category['store_id'] == $store->id ?? 'selected' }} --}}
-                        @isset($category['store_id'])
-                            {{ 'selected' }}
-                        @endisset
-
+                        {{ isset($category) && $category['store_id'] == $store->id ?? 'selected' }}
                      >{{ $store->name}}</option>
                  @endforeach
              </select>
+           </div>
+
+           <div class="form-group">
+             <label for="">Logo</label>
+             <input type="file" name="category_logo" id="" class="form-control-file"
+             value="{{ old('category_logo', isset($category) ? $category->coverPicture :null) }}">
            </div>
 
            <button type="submit" class="btn btn-primary">

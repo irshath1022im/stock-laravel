@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{-- @dump($stores) --}}
+{{-- @dump($result) --}}
 
 
 
@@ -22,7 +22,7 @@
                     </h5>
                 </a>
 
-                <img class="card-img-top" src=" {{ asset('assets/images/tyre.jpg')}}" alt="Card image cap">
+                <img class="card-img-top" src="{{ Storage::url($category['coverPicture'])}} " alt="Card image cap">
 
                 {{-- card body --}}
                         @forelse ($category['items'] as $item)

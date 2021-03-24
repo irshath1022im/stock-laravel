@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Store;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -43,7 +44,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
         // dump($request->all());
         $validatedData = $request->validate([
             'category' => 'required',
@@ -94,13 +96,31 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // dump($request->file('category_logo'));
+
+        if($request->hasfile('category_logo')){
+            $file = $request->file('category_logo');
+
+            //store the file in storage and get the path
+
+           $path = Storage::disk('public')->putFileAs('categoryCoverPhotos', $file, $request->category . '.' . $file->guessExtension());
+        } else {
+            $path = null;
+        }
+
         $validatedData = $request->validate([
             'category' => 'required',
-            'store_id' => 'not_in:0'
+            'store_id' => 'not_in:0',
         ]);
+
+        $updatedCategory = [
+            'category' => $request->category,
+            'store_id' => $request->store_id,
+            'coverPicture' => $path
+        ];
         $updateQuery = Category::where('id', $id)
-                        ->update($validatedData);
+                        ->update($updatedCategory);
         // return 'from update';
 
         return redirect()->route('category.index')->with('message', 'Category has been updated...');

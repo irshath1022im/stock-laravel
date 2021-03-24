@@ -28,6 +28,7 @@
                     <tr>
                         <th>CATEGORY ID</th>
                         <th>CATEGORY</th>
+                        <th>PICTURE</th>
                         <th>EDIT</th>
                         <th>REMOVE</th>
                     </tr>
@@ -38,7 +39,8 @@
                     <tr>
                         <td scope="row">{{ $category->id}}</td>
                         <td class="text-uppercase">{{ $category->category}}</td>
-
+                        <td class="text-uppercase">
+                            <img src="{{ Storage::url($category->coverPicture) }}" class="img-fluid w-25" /></td>
                         <td>
                             <form method="get" action="{{ route('category.edit', ['category'=>$category->id])}}">
                                 @csrf

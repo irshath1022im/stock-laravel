@@ -38,7 +38,7 @@
                     <tr>
                         <td scope="row">{{ $store->id}}</td>
                         <td scope="row">
-                            <img class="w-50 img-fluid" 
+                            <img class="w-50 img-fluid"
                             src="{{ Storage::url($store->coverPicture) }}" />
                         </td>
                         <td class="text-uppercase">{{ $store->name}}</td>
@@ -46,7 +46,8 @@
                             <form method="post" action="{{ route('store.edit', ['store'=>$store->id])}}">
                                 @csrf
                                 @method("PUT")
-                            <a href="{{ route('store.edit',['store'=> $store->id]) }}"><img src=" {{ asset('icons/edit_black_24dp.svg')}}" /></a>
+                            <a href="{{ route('store.edit',['store'=> $store->id]) }}">
+                            <img src=" {{ asset('icons/edit_black_24dp.svg')}}" /></a>
 
                             </form>
                         </td>
