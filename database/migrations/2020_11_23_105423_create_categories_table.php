@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('category');
             $table->string('coverPicture')->nullable();
-            $table->unsignedInteger('store_id')->index();
+            $table->unsignedBigInteger('store_id')->index();
 
             $table->foreign('store_id')->references('id')->on('stores');
             $table->timestamps();

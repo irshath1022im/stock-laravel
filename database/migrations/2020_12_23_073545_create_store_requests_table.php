@@ -16,7 +16,7 @@ class CreateStoreRequestsTable extends Migration
         Schema::create('store_requests', function (Blueprint $table) {
             $table->id();
             $table->date('requesting_date');
-            $table->unsignedInteger('staff_id');
+            $table->unsignedBigInteger('staff_id');
             $table->text('remark');
             $table->foreign('staff_id')->references('id')->on('staffs');
             $table->timestamps();

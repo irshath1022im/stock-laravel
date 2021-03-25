@@ -15,8 +15,8 @@ class CreateStoreRequestItemsTable extends Migration
     {
         Schema::create('store_request_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('store_request_id')->index();
-            $table->unsignedInteger('item_id')->index();
+            $table->unsignedBigInteger('store_request_id')->index();
+            $table->unsignedBigInteger('item_id')->index();
             $table->integer('qty');
             $table->text('remark');
             $table->foreign('store_request_id')->references('id')->on('store_requests')->onDelete('cascade');
