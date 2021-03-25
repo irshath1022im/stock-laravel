@@ -20,15 +20,15 @@
         </div>
         <div class="row " style="max-height: 5vh;margin-bottom: 19px;border-width: 0px;border-style: none;">
             <div class="col" style="padding: 19px;">
-                <h4 class="text-center">STORE REQUEST</h4>
+                <h4 class="text-center ">STORE REQUEST</h4>
             </div>
         </div>
         <div class="row" style="max-height: 80vh;margin-bottom: 74px;">
             <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="print-header" style="border-width: 1px;border-style: solid;">
-                            <tr class="print-header border border-primary ">
+                <div class="table-responsive ">
+                    <table class="table print-header">
+                        <thead class="print-header">
+                            <tr class="print-header">
                                 <th>NO</th>
                                 <th>ITEM</th>
                                 <th>SIZE</th>
@@ -51,6 +51,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row" style="max-height: 0px;margin-bottom: 85px;border-style: none;position: absolute;bottom: 35%;width: 95%;">
             <div class="col">
                 <div class="table-responsive">

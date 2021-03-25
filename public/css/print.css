@@ -1,14 +1,5 @@
 @media print {
-    .print-header {
-        background-color: #0c70b9;
-        border:1px dotted blue;
-    }
-    .print-tableBody td {
-        border:1px dotted blue;
-    }
-
-    .print-requestReasonHeader {
-        background-color: #0c70b9;
-        border:1px dotted blue;
+    .print-header tr, th , td {
+        border:1px dotted black;
     }
   }
