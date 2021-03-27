@@ -1,7 +1,7 @@
 
 <ul class="nav justify-content-center fixed-top bg-info mb-3 pb-3 ">
     <li class="nav-item">
-        <a class="nav-link   text-white" href="{{ route('store.index') }}">
+        <a class="nav-link   text-white" href="{{ route('homePage2') }}">
             HOME
         </a>
     </li>

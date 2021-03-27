@@ -8,6 +8,7 @@ use App\IssuedItem;
 use App\ItemSummary;
 
 use App\Http\Livewire\UserLivewire;
+use App\Http\Livewire\HomepageLivewire;
 use App\Http\Livewire\ItemsLivewire;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreRequest;
@@ -38,7 +39,8 @@ use App\Http\Controllers\ReceivingItemsController;
 //     return view('welcome');
 // });
 
-Route::get('/', [StoreController::class,'index']);
+// Route::get('/', [StoreController::class,'index']);
+Route::get('/', HomePageLivewire::class)->name('homePage2');
 
 Route::get('/admin', function () {
     return view('admin');
