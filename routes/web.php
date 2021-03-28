@@ -13,7 +13,7 @@ use App\Http\Livewire\ItemsLivewire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreRequest;
-use App\Http\Livewire\HomepageLivewire;
+use App\Http\Livewire\HomePageLivewire;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\StoreController;
