@@ -16,7 +16,9 @@
 
 <body style="color: rgb(194, 194, 194);">
 
-    {{ $slot }}
+    @include('components.navbar2')
+
+ @yield('content')
 
 
 

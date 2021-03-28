@@ -18,7 +18,7 @@ class CreateStoreRequestsTable extends Migration
             $table->date('requesting_date');
             $table->unsignedBigInteger('staff_id');
             $table->text('remark');
-            $table->foreign('staff_id')->references('id')->on('staffs');
+            $table->foreign('staff_id')->references('id')->on('staff');
             $table->timestamps();
         });
     }

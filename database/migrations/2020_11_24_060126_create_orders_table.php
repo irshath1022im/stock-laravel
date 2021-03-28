@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('receiving_id')->index();
+            $table->unsignedBigInteger('receiving_id')->index();
             $table->unsignedBigInteger('item_id')->index();
 
             $table->foreign('receiving_id')->references('id')->on('receivings');

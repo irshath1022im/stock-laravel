@@ -1,11 +1,14 @@
 
 <div>
-    
+
     {{-- @dump($selectedStore) --}}
     {{-- @dump($selectedCategory) --}}
     @component('components.navbar2')
-        
+
     @endcomponent
+
+
+
 
     <section style="width: 90%;margin: 0 auto;margin-left: auto;margin-top: 20px;">
         <div class="row">
@@ -19,26 +22,26 @@
                             <input class="form-check-input" type="radio"
                             name= "selectedStore" value="{{ $item->id}} "
                             wire:model="selectedStore" wire:click="clearFilter">
-                            <label class="form-check-label text-uppercase" for="formCheck-1" 
+                            <label class="form-check-label text-uppercase" for="formCheck-1"
                             style="color: rgb(71,66,66);font-family: Antic, sans-serif;font-weight: bold;">
                                 {{$item->name}}</label>
                         </div>
                     </li>
-                        
+
                     @endforeach
                 </ul>
-    
-    
+
+
                 <hr style="color: rgb(119,6,6);width: 260.375px;border-width: 2px;border-style: solid;">
 
                 <ul class="list-group">
                     @foreach ($categories as $item)
-                        
+
                     <li class="list-group-item" data-bss-hover-animate="pulse">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="formCheck-2" 
-                                name="selectedCategory" 
-                                wire:model="selectedCategory" 
+                            <input class="form-check-input" type="radio" id="formCheck-2"
+                                name="selectedCategory"
+                                wire:model="selectedCategory"
                                 value="{{ $item->category}}">
                             <label class="form-check-label text-uppercase" for="formCheck-1" style="color: rgb(71,66,66);font-family: Antic, sans-serif;font-weight: bold;">
                                 {{ $item->category}}</label></div>
@@ -48,10 +51,10 @@
             </div>
 
             <div class="col-sm-12 col-md-7 col-lg-7 col-xl-9 d-flex justify-content-around flex-wrap" style="border-style: none;border-color: rgb(130,120,120);">
-               
+
                 @forelse ($categorySummary as $item)
                     @component('components.categoryCard', ['category' => $item])
-                        
+
                     @endcomponent
                 @empty
 

@@ -7,11 +7,12 @@ use App\Delivery;
 use App\IssuedItem;
 use App\ItemSummary;
 
+use App\Http\Livewire\Login;
 use App\Http\Livewire\UserLivewire;
-use App\Http\Livewire\HomepageLivewire;
 use App\Http\Livewire\ItemsLivewire;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreRequest;
+use App\Http\Livewire\HomepageLivewire;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\StoreController;
@@ -21,6 +22,10 @@ use App\Http\Controllers\ReceivingController;
 use App\Http\Controllers\ItemReportController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +45,14 @@ use App\Http\Controllers\ReceivingItemsController;
 // });
 
 // Route::get('/', [StoreController::class,'index']);
+
+
 Route::get('/', HomePageLivewire::class)->name('homePage2');
+
 
 Route::get('/admin', function () {
     return view('admin');
-})->name('admin');
+})->name('admin')->middleware('auth');
 
 Route::get('/admin/adminStore', function () {
     $stores = Store::get();
@@ -57,8 +65,8 @@ Route::resource('/admin/category', CategoryController::class);
 Route::resource('/admin/items', ItemsController::class);
 Route::resource('/admin/receiving', ReceivingController::class);
 Route::resource('/admin/receivingItems', ReceivingItemsController::class);
-Route::resource('/admin/storeRequest', StoreRequestController::class);
-Route::get('/admin/user', UserLivewire::class)->name('adminUser');
+Route::resource('/admin/storeRequest', StoreRequestController::class)->middleware('auth');
+Route::get('/admin/user', UserLivewire::class)->name('adminUser')->middleware('auth');
 Route::get('/admin/reports', [ReportController::class, 'index'])->name('adminReports');
 
 
@@ -76,7 +84,13 @@ Route::get('/store/storeSummary/{store_type}', [StoreController::class,'storeSum
 // Route::get('/report/items/pdf', 'ItemReportController@getPdfItem')->name('itemsPdf');
 
 
+
+
 Route::get('/storeRequest/{storeRequestId}' , [StoreRequestController::class, 'storeRequest'])->name('storeRequestPrint');
+
+Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class,'login']);
+
 
 // Route::get('/admin/adminItems', function () {
 //     return view('adminItems');

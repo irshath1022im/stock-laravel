@@ -4,14 +4,14 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{ route('homePage2') }}" class="nav-link active" href="#" 
+                    <a href="{{ route('homePage2') }}" class="nav-link"
                     style="color: rgb(247, 247, 247);">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin')}}" class="nav-link" href="#" style="color: rgb(254,254,254);">ADMIN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: rgb(254,254,254);">LOGIN</a>
+                    <a class="nav-link" href="{{ route('login') }}" style="color: rgb(254,254,254);">LOGIN</a>
                 </li>
             </ul>
         </div>
