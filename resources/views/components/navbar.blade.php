@@ -49,7 +49,7 @@
         </li>
 
         <li class="nav-item">
-                <a class="nav-link  text-white" href="{{ route('admin')}}">ADMIN</a>
+                <a class="nav-link  text-white" href="{{ route('adminStore')}}">ADMIN</a>
         </li>
 
 

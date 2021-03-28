@@ -13,11 +13,9 @@
 </head>
 <body>
 
-    <div class="row">
-        @include('components.navbar')
-    </div>
+    @include('components.navbar2')
 
-<section class="container-fluid" style="margin-top: 60px">
+<section class="container-fluid">
     <div class="row">
 
         <div class="col-4 border border-primary p-2">
