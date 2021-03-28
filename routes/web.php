@@ -62,6 +62,7 @@ Route::resource('/admin/storeRequest', StoreRequestController::class)->middlewar
 Route::get('/admin/user', UserLivewire::class)->name('adminUser')->middleware('auth');
 Route::get('/admin/reports', [ReportController::class, 'index'])->name('adminReports');
 
+Route::resource('/store', StoreController::class);
 
 
 Route::get('/reports/{store}', [ItemReportController::class,'item'])->name('storeReport');
@@ -77,7 +78,6 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 
 // Route::get('/items2', [ItemController::class, 'index'])->name('items2');
-// Route::resource('/store', StoreController::class);
 // Route::get('/items', ItemsLivewire::class)->name('items');
 // Route::get('/report/items', [ItemReportController::class,'item'] );
 
