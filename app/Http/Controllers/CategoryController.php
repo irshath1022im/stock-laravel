@@ -105,6 +105,7 @@ class CategoryController extends Controller
             //store the file in storage and get the path
 
            $path = Storage::disk('public')->putFileAs('categoryCoverPhotos', $file, $request->category . '.' . $file->guessExtension());
+
         } else {
             $path = null;
         }
@@ -119,6 +120,7 @@ class CategoryController extends Controller
             'store_id' => $request->store_id,
             'coverPicture' => $path
         ];
+        
         $updateQuery = Category::where('id', $id)
                         ->update($updatedCategory);
         // return 'from update';

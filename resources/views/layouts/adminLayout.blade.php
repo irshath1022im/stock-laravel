@@ -20,7 +20,7 @@
 
         <div class="col-4 border border-primary p-2">
             <ul class="list-group bg-primary">
-                <a href="{{ route('adminStore') }}"<li class="list-group-item">ADD STORE1111</li></a>
+                <a href="{{ route('adminStore') }}"<li class="list-group-item">ADD STORE</li></a>
                 <a href="{{ route('category.index')}}"<li class="list-group-item">ADD CATEGORY</li></a>
                 <a href="{{ route('items.index') }}"<li class="list-group-item">ADD ITEMS</li></a>
                 <a href="{{ route('receiving.index')}}"><li class="list-group-item">RECEIVING</li></a>
