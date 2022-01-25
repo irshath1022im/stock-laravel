@@ -38,13 +38,13 @@
                         </thead>
                         <tbody class="print-tableBody">
                             @foreach ($data[0]->requested_items as $key=>$requested_item)
-                            <tr>
-                                <td>{{ $key +1 }}</td>
-                                <td>{{ $requested_item->item->name}}</td>
-                                <td>...</td>
-                                <td>{{ $requested_item->qty}}</td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $key +1 }}</td>
+                                    <td>{{ $requested_item->item->name}}</td>
+                                    <td>...</td>
+                                    <td>{{ $requested_item->qty}}</td>
+                                    <td></td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -58,7 +58,7 @@
                     <table class="table print-requestReasonHeader">
                         <thead class="print-requestReasonHeader">
                             <tr>
-                                <th>REQUEST FOR REASON</th>
+                                <th>REASON FOR REQUEST</th>
 
                             </tr>
                             <tr>
@@ -85,7 +85,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody style="border-width: 0px;border-style: none;">
+                        <tbody style="border-width: 1px;border-style: none;">
                             <tr style="padding: 0px;border-width: 1px;border-style: none;">
                                 <td style="background: #f7e8d9;padding: 20px;">NAME:: <span class="h6">{{ $data[0] ->staff->staff_name}}</td>
                                 <td style="background: #f7e8d9;padding: 20px;">SIGNATURE:</td>

@@ -20,15 +20,15 @@
 
         <div class="col-4 border border-primary p-2">
             <ul class="list-group bg-primary">
-                <a href="{{ route('adminStore') }}"<li class="list-group-item">ADD STORE</li></a>
-                <a href="{{ route('category.index')}}"<li class="list-group-item">ADD CATEGORY</li></a>
-                <a href="{{ route('items.index') }}"<li class="list-group-item">ADD ITEMS</li></a>
+                <a href="{{ route('adminStore') }}"<li class="list-group-item">STORE</li></a>
+                <a href="{{ route('category.index')}}"<li class="list-group-item">CATEGORY</li></a>
+                <a href="{{ route('items.index') }}"<li class="list-group-item">ITEMS</li></a>
                 <a href="{{ route('receiving.index')}}"><li class="list-group-item">RECEIVING</li></a>
                 <a href="{{ route('storeRequest.index') }}">
                             <li class="list-group-item">STORE REQUEST</li>
                 </a>
                 <a href="{{ route('adminUser') }}">
-                        <li class="list-group-item">ADD STAFF</li>
+                        <li class="list-group-item">STAFF</li>
                 </a>
                 <a href="{{ route('adminReports') }}" >
                     <li class="list-group-item">REPORT</li>
