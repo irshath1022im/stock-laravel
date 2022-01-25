@@ -45,7 +45,8 @@
                             <form method="get" action="{{ route('category.edit', ['category'=>$category->id])}}">
                                 @csrf
                             <a href="{{ route('category.edit',['category'=> $category->id]) }}">
-                                <img src=" {{ asset('icons/edit_black_24dp.svg')}}" /></a>
+                                <button class="btn btn-sm btn-outline-info">Edit</button>
+                            </a>
 
                             </form>
                         </td>
@@ -56,7 +57,7 @@
                                 @method("DELETE")
 
                             <a  href="{{ route('category.destroy',['category'=> $category->id]) }}">
-                                <img src=" {{ asset('icons/trash-2.svg')}}" /></a>
+                                <button class="btn btn-sm btn-outline-danger">Delete</button></a>
 
                             </form>
                         </td>

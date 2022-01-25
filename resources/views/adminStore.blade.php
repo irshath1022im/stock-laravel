@@ -38,7 +38,7 @@
                     <tr>
                         <td scope="row">{{ $store->id}}</td>
                         <td scope="row">
-                            <img class="w-50 img-fluid"
+                            <img class="w-25 img-fluid"
                             src="{{ Storage::url($store->coverPicture) }}" />
                         </td>
                         <td class="text-uppercase">{{ $store->name}}</td>
@@ -47,7 +47,8 @@
                                 @csrf
                                 @method("PUT")
                             <a href="{{ route('store.edit',['store'=> $store->id]) }}">
-                            <img src=" {{ asset('icons/edit_black_24dp.svg')}}" /></a>
+                                <button class="btn btn-sm btn-outline-info">Edit</button>
+                            </a>
 
                             </form>
                         </td>
@@ -57,7 +58,8 @@
                                 @csrf
                                 @method("DELETE")
                             <a href="{{ route('store.destroy',['store'=> $store->id]) }}">
-                                <img src=" {{ asset('icons/trash-2.svg')}}" /></a>
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </a>
 
                             </form>
                         </td>

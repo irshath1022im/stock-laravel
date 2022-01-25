@@ -24,7 +24,7 @@
                     <form method="get" action="{{ route('items.edit', ['item'=>$item->id])}}">
                         @csrf
                     <a href="{{ route('items.edit',['item'=> $item->id]) }}">
-                        <img src=" {{ asset('icons/edit_black_24dp.svg')}}" /></a>
+                        <button class="btn btn-sm btn-outline-info">Edit</button></a>
 
                     </form>
                 </td>
@@ -35,7 +35,7 @@
                         @method('DELETE')
                         @csrf
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                         {{-- <img type="submit" src=" {{ asset('icons/trash-2.svg')}}" /> --}}
                     </form>
 
