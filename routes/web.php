@@ -23,7 +23,7 @@ use App\Http\Controllers\ReceivingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ItemReportController;
-
+use App\Http\Controllers\PromotionalItems;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
 
@@ -75,6 +75,8 @@ Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::resource('/promotional-items', PromotionalItems::class);
 
 
 // Route::get('/items2', [ItemController::class, 'index'])->name('items2');

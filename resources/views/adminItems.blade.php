@@ -3,31 +3,45 @@
 
 @section('content')
 
-            <div>
+            @component('components.alerts')
+                
+            @endcomponent
+
+            {{-- <div>
                 <h3>ITEMS </h3>
+            </div> --}}
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        ITEMS
+                       {{-- <img src="/icons/file-plus.svg" class="" width="20em" /> --}}
+                    </h4>
+
+                 
+                </div>
+
+                <div class="card-body">
+                    <a href="{{ route('items.create') }}">
+                        <button class="btn btn-sm btn-primary">ADD UNIFORM ITEMS</button>
+                    </a>
+
+                    <a href="{{ route('promotional-items.create') }}">
+                        <button class="btn btn-sm btn-secondary">ADD PROMOTIONAL ITEMS</button>
+                    </a>
+
+                    @component('components.items', ['items'=> $items])
+
+                    @endcomponent
+
+                    
+    
+                </div>
             </div>
-
-            @if($message = session('message'))
-                <div class="alert alert-success" role="alert">
-                  <strong>{{ $message}}</strong>
-              </div>
-            @endif
-
-            @if($message = session('updated'))
-            <div class="alert alert-info" role="alert">
-              <strong>{{ $message}}</strong>
-          </div>
-        @endif
-
-           @if(session('deleted'))
-            <div class="alert alert-danger" role="alert">
-                <strong>{{ session('deleted')}}</strong>
-            </div>
-            @endif
 
 
               {{-- @livewire('admin.store') --}}
-              <div>
+              {{-- <div>
 
                 <div>
                     <div class="input-group mb-3">
@@ -35,11 +49,8 @@
                     </div>
                 </div>
 
-                @component('components.items', ['items'=> $items])
-
-                @endcomponent
-
-            </div>
+             
+            </div> --}}
 
     {{-- end of column --}}
 

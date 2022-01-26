@@ -10,7 +10,12 @@
 
 
 .bg-blue400 {
-    background-color: $blue-400;
+    background-color: $blue-400 !important;
+}
+
+.bg-purple100 {
+
+    background-color: $purple-100 !important;
 }
 
 // Bootstrap
