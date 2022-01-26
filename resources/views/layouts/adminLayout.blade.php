@@ -13,34 +13,67 @@
 </head>
 <body>
 
-    @include('components.navbar2')
+    {{-- @include('components.navbar2') --}}
 
-<section class="container-fluid">
-    <div class="row">
+<section class="">
 
-        <div class="col-4 border border-primary p-2">
-            <ul class="list-group bg-primary">
-                <a href="{{ route('adminStore') }}"<li class="list-group-item">STORE</li></a>
-                <a href="{{ route('category.index')}}"<li class="list-group-item">CATEGORY</li></a>
-                <a href="{{ route('items.index') }}"<li class="list-group-item">ITEMS</li></a>
-                <a href="{{ route('receiving.index')}}"><li class="list-group-item">RECEIVING</li></a>
-                <a href="{{ route('storeRequest.index') }}">
-                            <li class="list-group-item">STORE REQUEST</li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary"">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                        <img src="/images/alshahania-logo.png" alt="" class="w-50 d-inline-block align-text-top" />
                 </a>
-                <a href="{{ route('adminUser') }}">
-                        <li class="list-group-item">STAFF</li>
-                </a>
-                <a href="{{ route('adminReports') }}" >
-                    <li class="list-group-item">REPORT</li>
-                </a>
-                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="/">HOME</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('adminStore')}}" >STORE</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a>
+                      </li>  <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('items.index')}}" >ITEMS</a>
+                      </li>  <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('storeRequest.index')}}" >STORE REQUEST</a>
+                      </li>
+                    </li>  <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('receiving.index')}}" >RECEIVING</a>
+                      </li>
+
+                    </li>  <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('adminReports')}}" >REPORTS</a>
+                      </li>
+
+
+                @auth
+                    <form method="post" action="{{ route('logout')}}">
+                    @csrf
+                        <button type="submit" class="btn btn-outline-danger" style="color: rgb(254,254,254);">LOGOUT</button>
+                    </form>
+                @endauth
+   
+                  
+        
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+    <section class="container">
+        <div class=" row">
+
+            <div class="col">
+                @yield('content')
+            </div>
         </div>
-
-
-        <div class="col-8">
-            @yield('content')
-        </div>
-    </div>
+    </section>
 
 </section>
     @livewireScripts
@@ -71,8 +104,8 @@
         })
         </script>
 
-<script src="{{ mix('js/app.js') }}"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </body>
 </html>

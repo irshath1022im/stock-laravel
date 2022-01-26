@@ -117,8 +117,8 @@ class StoreRequestController extends Controller
                 // dump($result);
 
     //   return response($result);
-    //   return view('reports.storeRequest', ['data' => $result]);
-    return view('reports.storeRequest2', ['data' => $result]);
+      return view('reports.storeRequest', ['data' => $result]);
+    // return view('reports.storeRequest2', ['data' => $result]);
 
 
     //    $pdf = PDF::loadView('reports.storeRequest', compact('data'))->setPaper('a4', 'portrait');

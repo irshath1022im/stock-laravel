@@ -4,15 +4,14 @@
 // Variables
 @import 'variables';
 
-// @import '~bootstrap/scss/functions';
-// @import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 
-$lightBlue : #517fb8;
 
-// .yellow {
-//     color: $blue-200;
-// }
+.bg-blue400 {
+    background-color: $blue-400;
+}
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
