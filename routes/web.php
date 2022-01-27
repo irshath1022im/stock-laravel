@@ -26,7 +26,8 @@ use App\Http\Controllers\ItemReportController;
 use App\Http\Controllers\PromotionalItems;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
-
+use App\Http\Livewire\Admin\Items\ItemIndex;
+use App\Item;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,8 @@ Route::get('/admin/adminStore', function () {
 
 
 Route::resource('/admin/category', CategoryController::class)->middleware('auth');
-Route::resource('/admin/items', ItemsController::class)->middleware('auth');
+// Route::resource('/admin/items', ItemsController::class)->middleware('auth');
+Route::get('/admin/items', ItemIndex::class)->name('items');
 Route::resource('/admin/receiving', ReceivingController::class)->middleware('auth');
 Route::resource('/admin/receivingItems', ReceivingItemsController::class)->middleware('auth');
 Route::resource('/admin/storeRequest', StoreRequestController::class)->middleware('auth');
@@ -112,6 +114,13 @@ Route::resource('/promotional-items', PromotionalItems::class);
 //     return view('products');
 // });
 
+
+// Route::get('/test/items', function(){
+    
+//     return Store::with(['categoryItems' => function($query) {
+//         return $query->take(2)->get();
+//     }])->where('id',1)->get();
+// });
 
 
 

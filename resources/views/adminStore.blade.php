@@ -82,5 +82,5 @@
   <!-- Modal -->
 
 
-</div>
+    </div>
 @endsection

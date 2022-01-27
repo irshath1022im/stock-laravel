@@ -37,7 +37,7 @@
                       <li class="nav-item">
                         <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a>
                       </li>  <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('items.index')}}" >ITEMS</a>
+                        <a class="nav-link text-white" href="{{route('items')}}" >ITEMS</a>
                       </li>  <li class="nav-item">
                         <a class="nav-link text-white" href="{{route('storeRequest.index')}}" >STORE REQUEST</a>
                       </li>
@@ -67,12 +67,11 @@
         </nav>
 
     <section class="container mt-2">
-        <div class=" row">
-
-            <div class="col">
+      
+     
                 @yield('content')
-            </div>
-        </div>
+            
+
     </section>
 
 </section>
