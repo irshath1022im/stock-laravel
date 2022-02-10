@@ -14,15 +14,20 @@
             <ul class="list-group" style="margin-top: 8px;">
                 @forelse ($category['items'] as $item)
                     
-                    <li class="list-group-item" style="text-align: center;">
-                        <span class="text-uppercase" 
-                        style="border-color: rgb(84,1,1);color: rgb(135,73,0);font-size: 13px;font-family: Antic, sans-serif;font-weight: bold;text-align: left;">
-                            {{ $item['name']}}
-                        </span>
+                    <a href="{{ route('items.show', ['item' => $item['id'] ] ) }}" >
 
-                        <span class="badge badge-primary" style="margin-left: 15px;">{{ $item['balance']}}</span>
-                    </li>
+                        <li class="list-group-item" style="text-align: center;">
+                            <span class="text-uppercase" 
+                            style="border-color: rgb(84,1,1);color: rgb(135,73,0);font-size: 13px;font-family: Antic, sans-serif;font-weight: bold;text-align: left;">
+                                {{ $item['name']}}
+                            </span>
+
+                            <span class="badge badge-primary" style="margin-left: 15px;">{{ $item['balance']}}</span>
+                    
+                        </li>
+                    </a>
                 @empty
+
                 <div class="alert alert-primary" role="alert">
                     <strong>No Items Found ...</strong>
                 </div>

@@ -17,7 +17,6 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('category_id')->index();
-            $table->integer('initialQty');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });

@@ -19,6 +19,25 @@ class Item extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function store()
+    {
+        return $this->hasOneThrough(
+                Store::class,
+                Category::class,
+                'store_id',
+                'store_id',
+                'id',
+            );
+    }
+
+
+    public function itemQty()
+    {
+        return $this->hasMany(ItemQty::class);
+    }
+
+   
+
    public function issued_item( )
        {
             return $this->hasMany('App\IssuedItem');
@@ -29,10 +48,26 @@ class Item extends Model
         return $this->hasMany('App\StoreRequestItem');
     }
 
-       public function itemSummary()
-       {
-           return $this->hasOne('App\ItemSummary');
-       }
+    public function itemSummary()
+    {
+        return $this->hasOne('App\ItemSummary');
+    }
+
+    public function itemQties()
+    {
+        return $this->hasMany(ItemQty::class);
+    }
+
+    public function itemSizes()
+    {
+        return $this->hasManyThrough(
+                    ItemSize::class,
+                    ItemQty::class,
+                    'size_id',
+                    'id',
+                    'id'
+        );
+    }
 
 
 

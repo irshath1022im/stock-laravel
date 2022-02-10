@@ -1,7 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 .bg-blue400 {
-  background-color: #5da6e3;
+  background-color: #5da6e3 !important;
+}
+
+.bg-purple100 {
+  background-color: #eadff9 !important;
 }
 
 /*!

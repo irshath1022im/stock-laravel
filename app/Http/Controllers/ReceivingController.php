@@ -28,7 +28,9 @@ class ReceivingController extends Controller
 
     public function create()
     {
-        return view('components.forms.createReceivingForm');
+        
+        // return view('components.forms.createReceivingForm');
+        return view ('receivings.create');
     }
 
     public function show($id)

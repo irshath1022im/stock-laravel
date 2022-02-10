@@ -23,10 +23,12 @@ use App\Http\Controllers\ReceivingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ItemReportController;
-
+use App\Http\Controllers\PromotionalItems;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
-
+use App\Http\Livewire\Admin\Items\ItemIndex;
+use App\Item;
+use App\ItemQty;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +55,12 @@ Route::get('/admin/adminStore', function () {
     return view('adminStore', ['stores' => $stores]);
 })->name('adminStore')->middleware('auth');
 
+Route::resource('items', ItemController::class);
+
 
 Route::resource('/admin/category', CategoryController::class)->middleware('auth');
-Route::resource('/admin/items', ItemsController::class)->middleware('auth');
+// Route::resource('/admin/items', ItemsController::class)->middleware('auth');
+Route::get('/admin/items', ItemIndex::class)->name('items');
 Route::resource('/admin/receiving', ReceivingController::class)->middleware('auth');
 Route::resource('/admin/receivingItems', ReceivingItemsController::class)->middleware('auth');
 Route::resource('/admin/storeRequest', StoreRequestController::class)->middleware('auth');
@@ -75,6 +80,8 @@ Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::resource('/promotional-items', PromotionalItems::class);
 
 
 // Route::get('/items2', [ItemController::class, 'index'])->name('items2');
@@ -111,5 +118,26 @@ Route::post('/register', [RegisterController::class, 'register']);
 // });
 
 
+// Route::get('/test/items', function(){
+    
+//     return Store::with(['categoryItems' => function($query) {
+//         return $query->take(2)->get();
+//     }])->where('id',1)->get();
+// });
 
 
+
+Route::get('test/items/{id}/itemsQtyBySize', function($id){
+
+    // return ItemQty::with('item')->where('item_id', $id)
+    //                     ->selectRaw('sum(qty) as total')
+    //                     ->groupBy('size_id')
+
+    //                     ->get();
+    
+    return Item::with(['itemQty' => function($query){
+        return $query->selectRaw('sum(qty) as total')
+                    ->groupBy('size_id', 'item_id')
+                    ;
+    }])->findOrFail($id);
+});
