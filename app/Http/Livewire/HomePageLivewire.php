@@ -20,16 +20,20 @@ class HomePageLivewire extends Component
     public $categorySummary;
 
 
+    protected $listeners = ['selectStore'];
+
+    public function selectStore($store_id)
+    {
+        $this->selectedStore = $store_id;
+    }
+
+
     public function clearFilter()
     {
         $this->selectedCategory = null;
     }
 
-    public function mount()
-    {
-        $this->stores = Store::get();
-        
-    }
+  
 
     public function render()
     {
@@ -85,7 +89,7 @@ class HomePageLivewire extends Component
         });
         
       
-        return view('livewire.home-page-livewire');
+        return view('livewire.home-page-livewire')->extends('layouts.adminLayout');
     }
 
 

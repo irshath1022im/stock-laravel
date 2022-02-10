@@ -15,12 +15,15 @@ class CreateItemQtiesTable extends Migration
     {
         Schema::create('item_qties', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('size_id');
             $table->integer('qty');
+            $table->unsignedBigInteger('transection_id');
 
             $table->foreign('item_id')->on('items')->references('id');
             $table->foreign('size_id')->on('item_sizes')->references('id');
+            $table->foreign('transection_id')->on('transection_types')->references('transection_id');
             $table->timestamps();
         });
     }

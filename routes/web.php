@@ -28,6 +28,7 @@ use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\ReceivingItemsController;
 use App\Http\Livewire\Admin\Items\ItemIndex;
 use App\Item;
+use App\ItemQty;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ Route::get('/admin/adminStore', function () {
     // dump($stores);
     return view('adminStore', ['stores' => $stores]);
 })->name('adminStore')->middleware('auth');
+
+Route::resource('items', ItemController::class);
 
 
 Route::resource('/admin/category', CategoryController::class)->middleware('auth');
@@ -124,3 +127,17 @@ Route::resource('/promotional-items', PromotionalItems::class);
 
 
 
+Route::get('test/items/{id}/itemsQtyBySize', function($id){
+
+    // return ItemQty::with('item')->where('item_id', $id)
+    //                     ->selectRaw('sum(qty) as total')
+    //                     ->groupBy('size_id')
+
+    //                     ->get();
+    
+    return Item::with(['itemQty' => function($query){
+        return $query->selectRaw('sum(qty) as total')
+                    ->groupBy('size_id', 'item_id')
+                    ;
+    }])->findOrFail($id);
+});

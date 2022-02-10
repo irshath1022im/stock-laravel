@@ -48,10 +48,26 @@ class Item extends Model
         return $this->hasMany('App\StoreRequestItem');
     }
 
-       public function itemSummary()
-       {
-           return $this->hasOne('App\ItemSummary');
-       }
+    public function itemSummary()
+    {
+        return $this->hasOne('App\ItemSummary');
+    }
+
+    public function itemQties()
+    {
+        return $this->hasMany(ItemQty::class);
+    }
+
+    public function itemSizes()
+    {
+        return $this->hasManyThrough(
+                    ItemSize::class,
+                    ItemQty::class,
+                    'size_id',
+                    'id',
+                    'id'
+        );
+    }
 
 
 

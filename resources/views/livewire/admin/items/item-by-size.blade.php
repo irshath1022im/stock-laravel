@@ -1,6 +1,6 @@
 <div>
     
-    @dump($items)
+    {{-- @dump($items) --}}
     <div class="spinner-border text-primary" role="status" wire:loading>
         <span class="visually-hidden">Loading...</span>
     </div>
@@ -19,18 +19,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>XXL</td>
-                        <td>15</td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>XXL</td>
-                        <td>15</td>
-                    </tr>
-
                     <tr>
                         <td scope="row">1</td>
                         <td>XXL</td>

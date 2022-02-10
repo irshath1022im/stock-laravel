@@ -5,6 +5,7 @@ use App\Item;
 use App\Order;
 use App\Receiving;
 use App\IssuedItem;
+use App\ItemQty;
 use App\StoreRequestItem;
 use App\Support\Collection;
 use Illuminate\Http\Request;
@@ -20,44 +21,31 @@ class ItemController extends Controller
     public function index(Request $request)
     {
 
+      
+       return view('items.index');
 
-        $query = Item::
-            addSelect([
-            'issuedQty' => StoreRequestItem::select( DB::Raw('SUM(qty)'))
-                ->groupBy('item_id')
-                ->whereColumn('item_id', 'items.id')
-                ])
-            ->addSelect([
-                'receivedQty' => Order::select( DB::Raw('SUM(qty)'))
-                    ->groupBy('item_id')
-                    ->whereColumn('item_id', 'items.id')
-                    ])->get();
+    }
 
+    public function show($id)
+    {
+
+        $query = Item::findOrFail($id);
+
+        return view('items.show', ['item' => $query ]);
 
 
-            $query->map(function ($item){
-               return $item->balance = ($item->initialQty +$item->receivedQty) - $item->issuedQty ;
-                 });
-
-          return $query;
+    }
 
 
-        //          return $sorted;
 
-    // $orderByBalance = $request->orderByBalance;
+    public function create()
+    {
+        return view('items.create');
+    }
 
-    // if ( isset( $orderByBalance)) {
-    //   $sorderByBalance = $query->sortByDesc('balance');
-    //   return $sorderByBalance->values()->all();
 
-    // } else {
-    //    // $result = $query->max('balance');
-    //    $result = $query;
-        // return $query;
+    
 
-       return view('items');
-
-}
 
     public function issue(Request $request)
     {

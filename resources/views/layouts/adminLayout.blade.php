@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
+    <link rel="stylesheet" href="{{ asset('css/Login-Form-Clean.css') }}">
+
 
     @livewireStyles
 
@@ -32,17 +35,17 @@
                         <a class="nav-link text-white" aria-current="page" href="/">HOME</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('adminStore')}}" >STORE</a>
+                        {{-- <a class="nav-link text-white" href="{{route('store.index')}}" >STORE</a> --}}
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a>
+                        {{-- <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a> --}}
                       </li>  <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('items')}}" >ITEMS</a>
+                        <a class="nav-link text-white" href="{{route('items.index')}}" >ITEMS</a>
                       </li>  <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('storeRequest.index')}}" >STORE REQUEST</a>
+                        {{-- <a class="nav-link text-white" href="{{route('storeRequest.index')}}" >STORE REQUEST</a> --}}
                       </li>
                     </li>  <li class="nav-item">
-                        <a class="nav-link text-white" href="{{route('receiving.index')}}" >RECEIVING</a>
+                        <a class="nav-link text-white" href="{{route('receiving.create')}}" >RECEIVING</a>
                       </li>
 
                     </li>  <li class="nav-item">
