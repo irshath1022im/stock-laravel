@@ -1,9 +1,10 @@
 
 
-@extends('layouts.adminlayout')
+@extends('layouts.adminLayout')
 
 
 @section('content')
+
 
 {{-- @dump($result->itemSizes) --}}
 <div class="container">
