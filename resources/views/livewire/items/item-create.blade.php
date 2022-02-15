@@ -9,7 +9,7 @@
     <form wire:submit.prevent="AddNewItem">
 
         <div class="mb-3">
-            <label for="" class="form-label"></label>
+            <label for="" class="form-label">Item Name</label>
             <input type="text" name="name" id="" class="form-control" placeholder="Item Name" aria-describedby="helpId"
                 wire:model.defer="name"
             >
@@ -22,6 +22,7 @@
              <small id="helpId" class="text-danger">**</small>
         </div>
 
+       
         <div class="mb-3">
           <label for="" class="form-label">Category</label>
           <select class="form-control" name="" id="" 

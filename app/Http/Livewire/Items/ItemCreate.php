@@ -6,6 +6,7 @@ use App\Category;
 use App\Item;
 use App\Store;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ItemCreate extends Component
 {
@@ -16,10 +17,12 @@ class ItemCreate extends Component
     public $stores = [];
     public $categories=[];
 
+    use WithFileUploads;
+
     protected $rules= [
         'name' => 'required',
         'category_id' => 'required',
-        'store_id' => 'required'
+        'store_id' => 'required',
     ];
 
 
@@ -27,7 +30,10 @@ class ItemCreate extends Component
 
     public function AddNewItem()
     {
+
+
        $validated = $this->validate();
+
 
         Item::create($validated);
 

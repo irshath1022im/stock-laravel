@@ -20,8 +20,14 @@
          
 
             <div class="row">
+
                 <div class="col-sm-4 border">
-                    <img class="card-img-top img-fluid" src="{{ Storage::url('categoryCoverPhotos/Polo.png') }}" alt="">
+                    <img class="card-img-top img-fluid" src="{{ Storage::url($item->thumbnail) }}" alt="">
+
+                    @auth
+                        
+                    @livewire('items.item-picture-upload', ['item_id' => $item->id])
+                    @endauth
                 </div>
 
                 <div class="col bg-light border m-2">
