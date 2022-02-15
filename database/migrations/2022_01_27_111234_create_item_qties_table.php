@@ -23,7 +23,7 @@ class CreateItemQtiesTable extends Migration
 
             $table->foreign('item_id')->on('items')->references('id');
             $table->foreign('size_id')->on('item_sizes')->references('id');
-            $table->foreign('transection_id')->on('transection_types')->references('transection_id');
+            $table->foreign('transection_id')->on('transection_types')->references('id');
             $table->timestamps();
         });
     }
