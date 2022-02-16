@@ -7,7 +7,12 @@
 
         
         <div class="card-body">
-            <img class="card-img-top" src="{{ Storage::URL('categoryCOverPhotos/Polo.png') }}" alt="">
+
+          @empty($item->thumbnail)
+          {{-- <img class="card-img-top" src="{{ Storage::URL('') }}" alt=""> --}}
+          @endempty
+
+
          
         </div>
 

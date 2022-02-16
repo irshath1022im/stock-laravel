@@ -1,4 +1,9 @@
 <div>
+
+    <img class="card-img-top img-fluid" src="{{ Storage::url($image) }}" alt="" wire:loading.remove>
+
+    <div wire:loading wire:target="photo">Uploading...</div>
+
     <form wire:submit.prevent="save">
         <div class="mb-3">
             <input type="file" class="form-control"  wire:model="photo">
@@ -16,7 +21,7 @@
              
          @enderror
 
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">Upload</button>
     </form>
 
 

@@ -22,8 +22,7 @@
             <div class="row">
 
                 <div class="col-sm-4 border">
-                    <img class="card-img-top img-fluid" src="{{ Storage::url($item->thumbnail) }}" alt="">
-
+                  
                     @auth
                         
                     @livewire('items.item-picture-upload', ['item_id' => $item->id])
