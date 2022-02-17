@@ -59,6 +59,7 @@ Route::resource('items', ItemController::class);
 
 
 Route::resource('/admin/category', CategoryController::class)->middleware('auth');
+Route::resource('category', CategoryController::class);
 // Route::resource('/admin/items', ItemsController::class)->middleware('auth');
 Route::get('/admin/items', ItemIndex::class)->name('items');
 Route::resource('/admin/receiving', ReceivingController::class)->middleware('auth');

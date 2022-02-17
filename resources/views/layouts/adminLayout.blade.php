@@ -38,7 +38,7 @@
                         {{-- <a class="nav-link text-white" href="{{route('store.index')}}" >STORE</a> --}}
                       </li>
                       <li class="nav-item">
-                        {{-- <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a> --}}
+                        <a class="nav-link text-white" href="{{route('category.index')}}" >CATEGORY</a>
                       </li>  <li class="nav-item">
                         <a class="nav-link text-white" href="{{route('items.index')}}" >ITEMS</a>
                       </li>  <li class="nav-item">
