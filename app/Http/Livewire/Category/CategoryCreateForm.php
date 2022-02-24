@@ -24,6 +24,8 @@ class CategoryCreateForm extends Component
     {
         $this->reset();
         $this->resetValidation();
+        $this->emit('categoryCreateFormSubmited');
+
     }
 
 
@@ -39,7 +41,6 @@ class CategoryCreateForm extends Component
 
         session()->flash('success', 'Category has been created');
         $this->reset();
-        $this->emit('categoryCreateFormSubmited');
 
     }
 

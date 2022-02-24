@@ -12,13 +12,19 @@ class CategoryIndex extends Component
     use WithPagination;
     
     
-    protected $listeners =['categoryCreateFormSubmited'];
+    protected $listeners =['categoryCreateFormSubmited','PhotoUploadSuccess'];
     protected $paginationTheme = 'bootstrap';
 
 
     public function categoryCreateFormSubmited()
     {
 
+    }
+
+    public function PhotoUploadSuccess()
+    {
+     
+        session()->flush('success', 'Photo has been updated');
     }
 
 

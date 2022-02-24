@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shared;
 
+use App\Category;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,7 +13,7 @@ class PictureUploadInput extends Component
     use WithFileUploads;
 
     public $photo;
-    public $item_id;
+    public $request_id;
     public $image;
 
     public function save()
@@ -26,37 +27,42 @@ class PictureUploadInput extends Component
         
         if(env('APP_ENV') !== 'local') {
 
-         $path = Storage::disk('public')->putFileAs('itemCoverPhotos', $this->photo, $this->image .'.'.$fileExtention);
+         $path = Storage::disk('public')->putFileAs('categoryPicture', $this->photo, $this->image .'.'.$fileExtention);
          $this->image = $path;
 
         }
         else {
 
-            $path = $this->photo->storeAs('itemCoverPhotos',$this->item_id .'.'.$fileExtention);
+            $path = $this->photo->storeAs('categoryPicture',$this->request_id .'.'.$fileExtention);
             $this->image = $path;
 
         }
 
+        $query = Category::where('id', $this->request_id)
+        ->update(['coverPicture' => $this->image]);
+
+        if($query){
+            
+            $this->emit('PhotoUploadSuccess');
+         
+        }
 
         $this->reset('photo');
 
         
-
-       
-        
     }
 
-    // public function mount($item_id)
-    // {
-    //     $this->item_id = $item_id;
+    public function mount($request_id)
+    {
+        $this->request_id = $request_id;
 
-    //     $query=Item::find($item_id);
+        // $query=Item::find($item_id);
 
-    //     if($query)
-    //     {
-    //         $this->image = $query['thumbnail'];
-    //     }
-    // }
+        // if($query)
+        // {
+        //     $this->image = $query['thumbnail'];
+        // }
+    }
 
     public function render()
     {

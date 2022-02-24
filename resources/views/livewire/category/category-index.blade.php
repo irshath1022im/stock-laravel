@@ -5,7 +5,7 @@
     @endcomponent
 
 
-    {{-- <div class="card-header">
+    <div class="card-header">
         CATEGORY 
 
         @auth
@@ -16,7 +16,7 @@
         >New</button>
     
         @endauth
-    </div> --}}
+    </div>
 
 
 
@@ -49,7 +49,7 @@
 
                                             @auth
                                                 
-                                                {{-- @livewire('shared.picture-upload-input') --}}
+                                                @livewire('shared.picture-upload-input', ['request_id' => $item->id])
                                             @endauth
 
                                         </div>
