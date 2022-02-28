@@ -11,6 +11,7 @@ class CategoryCreateForm extends Component
     public $category;
     public $store_id;
     public $coverPicture;
+    public $category_id;
 
     protected $rules=[
         'category' => 'required',
@@ -18,7 +19,7 @@ class CategoryCreateForm extends Component
         'coverPicture' => ''
     ];
 
-    protected $listeners=['closeBtnClicked'];
+    protected $listeners=['closeBtnClicked', 'editCategoryRequest'];
 
     public function closeBtnClicked()
     {
@@ -44,6 +45,17 @@ class CategoryCreateForm extends Component
 
     }
 
+    public function editCategoryRequest()
+    {
+        $this->category = 'test';
+    }
+
+    public function mount($category_id)
+    {
+        $this->reset();
+        $this->category_id = $category_id;
+
+    }
 
     public function render()
     {

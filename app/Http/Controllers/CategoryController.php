@@ -70,8 +70,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        $deleteQuery = Category::destroy($id);
-        return redirect()->route('category.index')->with('message', 'Category has been deleted...');
+        // $deleteQuery = Category::destroy($id);
+        // return redirect()->route('category.index')->with('message', 'Category has been deleted...');
+            // $category = Category::findOrFail($id);
+        return view('category.show', ['category_id' => $id]);
     }
 
     /**

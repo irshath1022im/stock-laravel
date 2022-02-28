@@ -30,15 +30,12 @@
                             
                                     <div class="card">
                                         <div class="card-header">
-                                            <div class="card-title d-flex justify-content-between">
-                                                    <span>{{ $item->category }}</span>
-                                                    @auth
-                                                        
-                                                    <span><button type="button" class="btn btn-sm btn-outline-danger"
-                                                        data-bs-toggle="modal" data-bs-target="#modelId"
-                                                        >EDIT</button>
-                                                    @endauth
-                                                    
+                                            <div class="card-title">
+                                                    <span>
+                                                        <a href="{{ route('category.show',['category' => $item->id]) }}">
+                                                        {{ $item->category }}</a>
+                                                    </span>
+                                                 
                                             </div>
                                         </div>
 
@@ -47,10 +44,7 @@
                                         <div class="card-body">
                                             <img class="card-img-top img-fluid p-2" src="{{ Storage::URL($item->coverPicture) }}" alt="">
 
-                                            @auth
-                                                
-                                                @livewire('shared.picture-upload-input', ['request_id' => $item->id])
-                                            @endauth
+                                         
 
                                         </div>
 
@@ -86,7 +80,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @livewire('category.category-create-form')
+                    @livewire('category.category-create-form',['category_id' => 0])
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
