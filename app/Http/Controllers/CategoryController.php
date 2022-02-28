@@ -17,11 +17,12 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $result = Category::with(['store'])
-                        ->get();
+        // $result = Category::with(['store'])
+        //                 ->get();
 
         // return response()->json($result, 200);
-        return view('adminCategory',['categories'=>$result]);
+        // return view('adminCategory',['categories'=>$result]);
+        return view('category.index');
     }
 
     /**
@@ -32,8 +33,10 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $stores = $this->getStores();
-        return view('components.forms.categoryForm', ['stores' => $stores]);
+        // $stores = $this->getStores();
+        // return view('components.forms.categoryForm', ['stores' => $stores]);
+
+        // return view()
     }
 
     /**
@@ -67,8 +70,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        $deleteQuery = Category::destroy($id);
-        return redirect()->route('category.index')->with('message', 'Category has been deleted...');
+        // $deleteQuery = Category::destroy($id);
+        // return redirect()->route('category.index')->with('message', 'Category has been deleted...');
+            // $category = Category::findOrFail($id);
+        return view('category.show', ['category_id' => $id]);
     }
 
     /**
