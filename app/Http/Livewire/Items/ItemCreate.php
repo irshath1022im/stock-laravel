@@ -13,8 +13,6 @@ class ItemCreate extends Component
 
     public $name;
     public $category_id;
-    public $store_id;
-    public $stores = [];
     public $categories=[];
 
     use WithFileUploads;
@@ -22,7 +20,6 @@ class ItemCreate extends Component
     protected $rules= [
         'name' => 'required',
         'category_id' => 'required',
-        'store_id' => 'required',
     ];
 
 
@@ -38,7 +35,7 @@ class ItemCreate extends Component
         Item::create($validated);
 
         session()->flash('success', 'Item Has been added');
-        $this->reset(['name','category_id', 'store_id']);
+        $this->reset();
 
 
     }
