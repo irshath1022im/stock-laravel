@@ -36,37 +36,15 @@
           </select>
 
           <small id="helpId" class="text-danger">**</small>
-          @error('category_id')
-          <div class="alert alert-danger" role="alert">
-              <strong>{{ $message }}</strong>
-          </div>
-          
-      @enderror
+              @error('category_id')
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                
+              @enderror
         </div>
 
-        
-        <div class="mb-3">
-            <label for="" class="form-label">Store</label>
-            <select class="form-control" name="" id="" 
-              wire:model.defer="store_id"
-            >
-              <option>None</option>
-              @foreach ($stores as $item)
-                  <option>{{ $item->name }}</option>
-                  
-              @endforeach
-            </select>
   
-            <small id="helpId" class="text-danger">**</small>
-            @error('store_id')
-            <div class="alert alert-danger" role="alert">
-                <strong>{{ $message }}</strong>
-            </div>
-            
-        @enderror
-          </div>
-  
-
         <button type="submit" class="btn btn-primary"
         >Submit</button>
     </form>
